@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=3 uid="uid://cy8tuhs3abgx2"]
+
+[ext_resource type="Texture2D" uid="uid://l40mlbkfsrje" path="res://assets/icons/Numbers Separated/Number1.png" id="1_dsfdi"]
+[ext_resource type="Script" path="res://scenes/ui/action_wheel/action_wheel.gd" id="1_wdfaa"]
+[ext_resource type="Texture2D" uid="uid://jd5ugpnj05eq" path="res://assets/icons/Icons Separated/Icon1.png" id="1_xu2q1"]
+[ext_resource type="Texture2D" uid="uid://cywh4gsdtpkgq" path="res://assets/icons/Numbers Separated/Number2.png" id="2_0hfjv"]
+[ext_resource type="Texture2D" uid="uid://0mmjo00our67" path="res://assets/icons/Numbers Separated/Number3.png" id="3_hwnaj"]
+[ext_resource type="Texture2D" uid="uid://q4ibikn7tm6n" path="res://assets/icons/Numbers Separated/Number4.png" id="4_a2akq"]
+
+[node name="VBoxContainer" type="VBoxContainer"]
+offset_left = -54.0
+offset_right = 54.0
+offset_bottom = 44.0
+script = ExtResource("1_wdfaa")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "this spell does lorem ipsum"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("1_xu2q1")
+
+[node name="TextureButton5" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("1_xu2q1")
+
+[node name="TextureButton3" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("1_xu2q1")
+
+[node name="TextureButton4" type="TextureButton" parent="HBoxContainer2"]
+layout_mode = 2
+texture_normal = ExtResource("1_xu2q1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TextureButton" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("1_dsfdi")
+
+[node name="TextureButton2" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_0hfjv")
+
+[node name="TextureButton3" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("3_hwnaj")
+
+[node name="TextureButton4" type="TextureButton" parent="HBoxContainer"]
+layout_mode = 2
+texture_normal = ExtResource("4_a2akq")

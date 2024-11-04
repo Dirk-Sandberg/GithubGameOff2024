@@ -1,25 +1,52 @@
 extends CharacterBody2D
+@export var action_wheel_scene: PackedScene
 
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var pivot: Node2D = $Pivot
 
+
+
+@onready var states = {
+	"idle": $States/Idle,
+	"run": $States/Run,
+	"attack": $States/Attack,
+	"jump": $States/Jump,
+	"fall": $States/Fall
+}
+var state: Node
+var action_wheel: Node
+
+func _ready() -> void:
+	change_state("idle")
+
+func change_state(new_state: String):
+	if state: state.exit(self)
+	
+	state = states[new_state]
+	state.enter(self)
+	
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
+	var new_state: String = state.physics_process(self, delta)
+	
+	if new_state:
+		change_state(new_state)
+	
 
-	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("action_wheel"):
+		if not action_wheel or action_wheel.visible == false:
+			show_action_wheel()
+		else:
+			hide_action_wheel()
 
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction := Input.get_axis("ui_left", "ui_right")
-	if direction:
-		velocity.x = direction * SPEED
+func show_action_wheel():
+	if not action_wheel:
+		action_wheel = action_wheel_scene.instantiate()
+		add_child(action_wheel)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		action_wheel.display()
 
-	move_and_slide()
+func hide_action_wheel():
+	action_wheel.go_away()

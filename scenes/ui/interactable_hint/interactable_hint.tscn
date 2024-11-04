@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://buoljxwq5xned"]
+
+[ext_resource type="Script" path="res://scenes/ui/interactable_hint/interactable_hint.gd" id="1_3qn0t"]
+
+[node name="InteractableHint" type="RichTextLabel"]
+clip_contents = false
+custom_minimum_size = Vector2(64, 16)
+offset_left = -32.0
+offset_right = 32.0
+offset_bottom = 16.0
+bbcode_enabled = true
+text = "[center][wave]E"
+fit_content = true
+script = ExtResource("1_3qn0t")

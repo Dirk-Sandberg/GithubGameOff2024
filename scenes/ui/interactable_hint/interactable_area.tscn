@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cst0j78h1olvf"]
+
+[ext_resource type="Script" path="res://scenes/npcs/shop1/interactable_area.gd" id="1_864mx"]
+[ext_resource type="PackedScene" uid="uid://buoljxwq5xned" path="res://scenes/ui/interactable_hint/interactable_hint.tscn" id="2_5w5bn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b3llq"]
+size = Vector2(111, 41)
+
+[node name="InteractableArea" type="Area2D"]
+collision_layer = 4
+script = ExtResource("1_864mx")
+interactable_hint_scene = ExtResource("2_5w5bn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 6.5)
+shape = SubResource("RectangleShape2D_b3llq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

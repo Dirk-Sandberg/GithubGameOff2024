@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://domaa22c31ery"]
+
+[ext_resource type="PackedScene" uid="uid://cst0j78h1olvf" path="res://scenes/ui/interactable_hint/interactable_area.tscn" id="1_4x1cj"]
+[ext_resource type="Texture2D" uid="uid://b8unrprnkebwk" path="res://scenes/npcs/shop2/Gem Merchant.png" id="2_e7tyw"]
+[ext_resource type="PackedScene" uid="uid://1iieu2i6sv46" path="res://scenes/npcs/shop1/flickering_light.tscn" id="3_6tt5l"]
+
+[sub_resource type="Animation" id="Animation_rk2wn"]
+resource_name = "idle"
+length = 0.3667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_me43j"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kt6x8"]
+_data = {
+"RESET": SubResource("Animation_me43j"),
+"idle": SubResource("Animation_rk2wn")
+}
+
+[node name="Shopkeeper2" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_e7tyw")
+vframes = 12
+
+[node name="InteractableArea" parent="." instance=ExtResource("1_4x1cj")]
+hint_text = "rest"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kt6x8")
+}
+autoplay = "idle"
+speed_scale = 0.2
+
+[node name="FlickeringLight" parent="." instance=ExtResource("3_6tt5l")]
+position = Vector2(23, 5)
+
+[node name="FlickeringLight2" parent="." instance=ExtResource("3_6tt5l")]
+position = Vector2(-17, 5)
