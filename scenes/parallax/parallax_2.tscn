@@ -1,0 +1,123 @@
+[gd_scene load_steps=10 format=3 uid="uid://f7pl3ql0it4"]
+
+[ext_resource type="Texture2D" uid="uid://cfhin0gywul58" path="res://assets/parallax/parallax2/06 - clouds.png" id="1_2llmf"]
+[ext_resource type="Texture2D" uid="uid://bixii3lia7u3y" path="res://assets/parallax/Color 1/Sun1.png" id="2_a2dsv"]
+[ext_resource type="Texture2D" uid="uid://kr6qo8t7odyu" path="res://assets/parallax/parallax2/05 - back rocks.png" id="3_0pt6w"]
+[ext_resource type="Texture2D" uid="uid://dawniv8w4343e" path="res://assets/parallax/parallax2/04 - rocks.png" id="4_hb2ga"]
+[ext_resource type="Texture2D" uid="uid://4q3te4th80bi" path="res://assets/parallax/parallax2/02 - dense atmosphere.png" id="5_wvgru"]
+[ext_resource type="Texture2D" uid="uid://b5gatf71x8oi0" path="res://assets/parallax/parallax2/01 - below fog.png" id="6_eo16p"]
+
+[sub_resource type="Animation" id="Animation_5xphy"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_ll7sq"]
+resource_name = "idle"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/path = NodePath(".:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 360),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.01, 1.01), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44787"]
+_data = {
+"RESET": SubResource("Animation_5xphy"),
+"idle": SubResource("Animation_ll7sq")
+}
+
+[node name="Parallax2" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="Close1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(360, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Close1"]
+texture = ExtResource("1_2llmf")
+centered = false
+
+[node name="Bg" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Sun" type="Sprite2D" parent="ParallaxBackground/Bg"]
+position = Vector2(-128, -53)
+texture = ExtResource("2_a2dsv")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/Bg/Sun"]
+libraries = {
+"": SubResource("AnimationLibrary_44787")
+}
+autoplay = "idle"
+speed_scale = 0.1
+
+[node name="Far1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.25, 0.25)
+motion_mirroring = Vector2(360, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Far1"]
+texture = ExtResource("3_0pt6w")
+centered = false
+
+[node name="Mid1" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+motion_mirroring = Vector2(360, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Mid1"]
+texture = ExtResource("4_hb2ga")
+centered = false
+
+[node name="Atmosphere" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+
+[node name="Atmosphere" type="Sprite2D" parent="ParallaxBackground/Atmosphere"]
+texture = ExtResource("5_wvgru")
+centered = false
+
+[node name="Fog" type="Sprite2D" parent="ParallaxBackground/Atmosphere"]
+texture = ExtResource("6_eo16p")
+centered = false

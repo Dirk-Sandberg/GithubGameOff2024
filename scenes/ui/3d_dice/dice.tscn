@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://dqxbcfdje7v3d"]
+
+[ext_resource type="PackedScene" uid="uid://cagn7m31v0i2p" path="res://assets/3d_dice/d20_dice_w20_wurfel_3d_model_free.glb" id="1_kul6u"]
+[ext_resource type="Script" path="res://scenes/ui/3d_dice/dice.gd" id="2_qw7r4"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_e4t7j"]
+bounce = 0.2
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_hi3c1"]
+height = 9.44781
+radius = 30.7753
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_gpxy6"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_fso82"]
+points = PackedVector3Array(-0.0415275, -0.448743, -0.860323, 0.0483633, 0.452027, 0.851407, -0.0711087, 0.446458, 0.840824, -0.041487, 0.956601, -0.052278, 0.82517, -0.448249, -0.291402, -0.524242, -0.452146, 0.700583, -0.818484, 0.448152, 0.186321, 0.526552, 0.448548, -0.71027, 0.833413, 0.452745, 0.279093, 0.528906, -0.450566, 0.698107, -0.0419238, -0.965941, -0.0225672, -0.821615, -0.44986, -0.292422, -0.52221, 0.450405, -0.713178, -0.827296, 0.452958, 0.27906, 0.288143, 0.80979, 0.097199, 0.0483505, -0.964201, -0.0225402, 0.0478698, -0.447081, -0.857165, -0.101824, 0.930784, 0.037155, -0.822073, -0.45011, -0.202491, 0.108969, 0.241676, 0.853395, -0.101332, -0.896462, 0.126658, 0.823794, -0.447499, -0.201361, -0.494597, -0.392327, 0.731837, -0.0722252, -0.332205, -0.868719, 0.0472016, 0.939636, 0.0361658, 0.441967, 0.302549, -0.748924, -0.820026, 0.359157, 0.30645, 0.827463, 0.449499, 0.217172, 0.0477916, 0.95225, -0.0520747, -0.786386, -0.268078, -0.35025, 0.559095, -0.360483, 0.668232, 0.347349, -0.628347, 0.485931)
+
+[node name="Dice" instance=ExtResource("1_kul6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, 0)
+physics_material_override = SubResource("PhysicsMaterial_e4t7j")
+linear_damp = 1.0
+angular_damp = 1.0
+script = ExtResource("2_qw7r4")
+
+[node name="Sketchfab_model" parent="." index="0"]
+transform = Transform3D(0.1, 0, 0, 0, -4.37114e-09, 0.1, 0, -0.1, -4.37114e-09, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="Sketchfab_model" index="1"]
+visible = false
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="Sketchfab_model/Area3D" index="0"]
+transform = Transform3D(1, 0, 0, 0, -0.204018, -0.978967, 0, 0.978967, -0.204018, -0.177937, -11.418, 80.2806)
+shape = SubResource("CylinderShape3D_hi3c1")
+
+[node name="Area20" type="Area3D" parent="Sketchfab_model" index="2"]
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="Sketchfab_model/Area20" index="0"]
+transform = Transform3D(1, 0, 0, 0, -0.222399, -0.974956, 0, 0.974956, -0.222399, -0.177937, -11.418, 80.2806)
+shape = SubResource("WorldBoundaryShape3D_gpxy6")
+
+[node name="Area8" type="Area3D" parent="Sketchfab_model" index="3"]
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="Sketchfab_model/Area8" index="0"]
+transform = Transform3D(0.688318, -0.584748, -0.429288, -0.384787, 0.207357, -0.899412, 0.614945, 0.784266, -0.0822759, -34.6706, 21.3758, 70.9389)
+shape = SubResource("WorldBoundaryShape3D_gpxy6")
+
+[node name="Area10" type="Area3D" parent="Sketchfab_model" index="4"]
+
+[node name="CollisionPolygon3D" type="CollisionShape3D" parent="Sketchfab_model/Area10" index="0"]
+transform = Transform3D(0.192063, -0.250152, -0.948965, -0.446781, 0.838662, -0.3115, 0.873784, 0.483808, 0.0493134, -20.3446, 62.7538, 53.3723)
+shape = SubResource("WorldBoundaryShape3D_gpxy6")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(10, 0, 0, 0, -4.37114e-07, 10, 0, -10, -4.37114e-07, 0, 0, 0)
+shape = SubResource("ConvexPolygonShape3D_fso82")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." index="2"]
+transform = Transform3D(-0.994151, -0.0728243, 0.0797528, 0, 0.738455, 0.674302, -0.107999, 0.670358, -0.734136, -18.9665, 42.0464, 31.5781)
+top_level = true
+light_energy = 1.5
+
+[node name="Camera3D" type="Camera3D" parent="." index="3"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 25, 0)
+top_level = true
+fov = 103.8

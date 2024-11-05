@@ -18,6 +18,8 @@ var state: Node
 var action_wheel: Node
 
 func _ready() -> void:
+	$Pivot/Shockwave.hide()
+	$Pivot/DarkShockwave.hide()
 	change_state("idle")
 
 func change_state(new_state: String):
@@ -38,6 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_wheel"):
 		if not action_wheel or action_wheel.visible == false:
 			show_action_wheel()
+			change_state("attack")
 		else:
 			hide_action_wheel()
 
@@ -50,3 +53,8 @@ func show_action_wheel():
 
 func hide_action_wheel():
 	action_wheel.go_away()
+
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	print("UHOH")
+	pass # Replace with function body.

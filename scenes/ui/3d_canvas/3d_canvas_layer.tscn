@@ -1,0 +1,49 @@
+[gd_scene load_steps=5 format=3 uid="uid://711p626bi0di"]
+
+[ext_resource type="PackedScene" uid="uid://dqxbcfdje7v3d" path="res://scenes/ui/3d_dice/dice.tscn" id="1_u37y1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_051xm"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8k1k0"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_16rjp"]
+
+[node name="3DCanvasLayer" type="CanvasLayer"]
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 50.0
+offset_bottom = 50.0
+texture = SubResource("ViewportTexture_051xm")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = 51.0
+offset_right = 101.0
+offset_bottom = 50.0
+texture = SubResource("ViewportTexture_8k1k0")
+expand_mode = 1
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+canvas_item_default_texture_filter = 0
+size = Vector2i(80, 80)
+
+[node name="Dice" parent="SubViewport" instance=ExtResource("1_u37y1")]
+gravity_scale = 5.0
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_16rjp")
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+transparent_bg = true
+
+[node name="Dice" parent="SubViewport2" instance=ExtResource("1_u37y1")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SubViewport2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SubViewport2/StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_16rjp")

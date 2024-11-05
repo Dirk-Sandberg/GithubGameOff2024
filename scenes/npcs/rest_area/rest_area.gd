@@ -11,4 +11,3 @@ func _ready() -> void:
 		decor.hide()
 	fires.pick_random().show()
 	decors.pick_random().show()
-	pass # Replace with function body.

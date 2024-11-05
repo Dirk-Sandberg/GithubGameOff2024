@@ -11,7 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://b0svpvlhrc1sx" path="res://assets/characters/player/shockwave VFX 137x39.png" id="8_1gqtw"]
 [ext_resource type="Texture2D" uid="uid://dqwbs6amwqnew" path="res://assets/characters/player/evil shockwave.png" id="9_v0ddo"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rivd8"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ih1pd"]
+radius = 9.0
 
 [sub_resource type="Animation" id="Animation_ypsu2"]
 resource_name = "idle"
@@ -286,6 +287,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_gto2v")
 action_wheel_scene = ExtResource("2_68yud")
 
@@ -307,8 +309,8 @@ script = ExtResource("5_6rts0")
 script = ExtResource("6_a3e2a")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-shape = SubResource("CircleShape2D_rivd8")
+position = Vector2(-2, 0)
+shape = SubResource("CircleShape2D_ih1pd")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
 [node name="Pivot" type="Node2D" parent="."]
@@ -336,3 +338,11 @@ libraries = {
 "": SubResource("AnimationLibrary_wlla8")
 }
 speed_scale = 0.3
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_top = 0
+limit_bottom = 180
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
