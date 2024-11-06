@@ -6,7 +6,7 @@ extends CanMoveState
 var frames_holding_jump = 0
 var extra_jump_velocity_per_frame = -15
 
-func enter(owner: CharacterBody2D):
+func enter(owner: CharacterBody2D, previous_state: Node):
 	frames_holding_jump = 0
 	owner.velocity.y = JUMP_VELOCITY
 	owner.animation_player.play("jump")

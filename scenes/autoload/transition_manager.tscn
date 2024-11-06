@@ -1,0 +1,83 @@
+[gd_scene load_steps=8 format=3 uid="uid://b6k77poc4r8x"]
+
+[ext_resource type="Script" path="res://scenes/autoload/transition_manager.gd" id="1_vwlj0"]
+[ext_resource type="Shader" path="res://scenes/autoload/circle_transition.gdshader" id="2_ct5dv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ja47l"]
+shader = ExtResource("2_ct5dv")
+shader_parameter/circle_size = 1.0
+
+[sub_resource type="Animation" id="Animation_30mmg"]
+resource_name = "fade_in"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.733333, 1),
+"transitions": PackedFloat32Array(1.41421, 1, 1.6245, 1),
+"update": 0,
+"values": [1.0, 0.1, 0.1, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yhfuh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_au3x7"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/ColorRect:material:shader_parameter/circle_size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tqjlu"]
+_data = {
+"RESET": SubResource("Animation_yhfuh"),
+"fade_in": SubResource("Animation_30mmg"),
+"fade_out": SubResource("Animation_au3x7")
+}
+
+[node name="TransitionManager" type="Node"]
+script = ExtResource("1_vwlj0")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_ja47l")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.0431373, 0.0431373, 0.0431373, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tqjlu")
+}
+speed_scale = 0.5

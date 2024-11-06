@@ -1,6 +1,6 @@
 extends CanMoveState
 
-func enter(owner: CharacterBody2D):
+func enter(owner: CharacterBody2D, previous_state: Node):
 	owner.animation_player.play("run")
 
 func exit(owner: CharacterBody2D):

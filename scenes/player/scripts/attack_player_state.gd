@@ -3,7 +3,7 @@ extends BasePlayerState
 @export var attack_hitbox: AttackHitboxComponent
 
 var finished = false
-func enter(owner: CharacterBody2D):
+func enter(owner: CharacterBody2D, previous_state: Node):
 	finished = false
 	owner.animation_player.play("melee")
 	owner.animation_player.speed_scale = 0.6

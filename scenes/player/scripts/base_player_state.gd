@@ -1,7 +1,7 @@
 extends Node
 class_name BasePlayerState
 
-func enter(owner: CharacterBody2D):
+func enter(owner: CharacterBody2D, previous_state: Node):
 	pass
 
 func exit(owner: CharacterBody2D):

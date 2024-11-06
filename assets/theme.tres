@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dpdsv1o3830fp"]
+[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dpdsv1o3830fp"]
 
 [ext_resource type="Texture2D" uid="uid://bcy4mpcar04l5" path="res://assets/ui/UI - 16x16 UI Tileset.png" id="1_8sq4t"]
 
@@ -11,6 +11,52 @@ texture_margin_bottom = 8.0
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 region_rect = Rect2(16, 64, 48, 48)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_041mm"]
+load_path = "res://.godot/imported/UI - 16x16 UI Tileset.png-6ee0913130ae0d74eb189dd26a1a7a7d.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_oqi1x"]
+texture = SubResource("CompressedTexture2D_041mm")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(64, 64, 48, 48)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dusrt"]
+load_path = "res://.godot/imported/UI - 16x16 UI Tileset.png-6ee0913130ae0d74eb189dd26a1a7a7d.ctex"
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_hro7i"]
+texture = SubResource("CompressedTexture2D_dusrt")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(112, 64, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1lcm"]
+texture = ExtResource("1_8sq4t")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(208, 64, 48, 48)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1dqxb"]
+texture = SubResource("CompressedTexture2D_dusrt")
+texture_margin_left = 8.0
+texture_margin_top = 8.0
+texture_margin_right = 8.0
+texture_margin_bottom = 8.0
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+region_rect = Rect2(256, 64, 48, 48)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wh11p"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -30,5 +76,13 @@ border_color = Color(0.8, 0.8, 0.8, 0)
 
 [resource]
 PanelContainer/styles/panel = SubResource("StyleBoxTexture_heyit")
+PanelContainer2/base_type = &"PanelContainer"
+PanelContainer2/styles/panel = SubResource("StyleBoxTexture_oqi1x")
+PanelContainer3/base_type = &"PanelContainer"
+PanelContainer3/styles/panel = SubResource("StyleBoxTexture_hro7i")
+PanelContainer4/base_type = &"PanelContainer"
+PanelContainer4/styles/panel = SubResource("StyleBoxTexture_y1lcm")
+PanelContainer5/base_type = &"PanelContainer"
+PanelContainer5/styles/panel = SubResource("StyleBoxTexture_1dqxb")
 ProgressBar/styles/background = SubResource("StyleBoxFlat_wh11p")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_vsukf")

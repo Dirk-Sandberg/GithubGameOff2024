@@ -297,7 +297,7 @@ _data = {
 "run": SubResource("Animation_xspxd")
 }
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 2
 script = ExtResource("1_gto2v")
 action_wheel_scene = ExtResource("2_68yud")

@@ -27,8 +27,9 @@ func _ready() -> void:
 func change_state(new_state: String):
 	if state: state.exit(self)
 	
+	var old_state = state
 	state = states[new_state]
-	state.enter(self)
+	state.enter(self, old_state)
 	
 
 func _physics_process(delta: float) -> void:
@@ -40,6 +41,7 @@ func _physics_process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("action_wheel"):
+		print("A")
 		if not action_wheel or action_wheel.visible == false:
 			show_action_wheel()
 			change_state("attack")
@@ -55,6 +57,7 @@ func show_action_wheel():
 
 func hide_action_wheel():
 	action_wheel.go_away()
+	TransitionManager.change_scene()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
