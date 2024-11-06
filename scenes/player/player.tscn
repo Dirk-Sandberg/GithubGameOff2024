@@ -1,11 +1,11 @@
-[gd_scene load_steps=31 format=3 uid="uid://d0xq5medhh8eg"]
+[gd_scene load_steps=32 format=3 uid="uid://d0xq5medhh8eg"]
 
 [ext_resource type="Texture2D" uid="uid://dji6gk2wsfpii" path="res://assets/characters/player/sage 52x21.png" id="1_4brig"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gto2v"]
 [ext_resource type="PackedScene" uid="uid://cy8tuhs3abgx2" path="res://scenes/ui/action_wheel/action_wheel.tscn" id="2_68yud"]
 [ext_resource type="Script" path="res://scenes/player/scripts/idle_player_state.gd" id="2_yvlud"]
-[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://assets/characters/components/health_component.tscn" id="3_4lawa"]
-[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://assets/characters/components/hitbox_component.tscn" id="3_fhy3m"]
+[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="3_4lawa"]
+[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="3_fhy3m"]
 [ext_resource type="Script" path="res://scenes/player/scripts/run_player_state.gd" id="3_yxuy7"]
 [ext_resource type="Script" path="res://scenes/player/scripts/attack_player_state.gd" id="4_mvbvo"]
 [ext_resource type="Script" path="res://scenes/player/scripts/jump_player_state.gd" id="5_6rts0"]
@@ -13,7 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://b0svpvlhrc1sx" path="res://assets/characters/player/shockwave VFX 137x39.png" id="8_1gqtw"]
 [ext_resource type="Script" path="res://scenes/player/hurt_player_state.gd" id="9_8141o"]
 [ext_resource type="Texture2D" uid="uid://dqwbs6amwqnew" path="res://assets/characters/player/evil shockwave.png" id="9_v0ddo"]
-[ext_resource type="PackedScene" uid="uid://cvf021wq70lxf" path="res://assets/characters/components/attack_box_component.tscn" id="14_w6ccq"]
+[ext_resource type="Script" path="res://scenes/player/dead_player_state.gd" id="11_1u5w7"]
+[ext_resource type="PackedScene" uid="uid://cvf021wq70lxf" path="res://scenes/npcs/components/attack_box_component.tscn" id="14_w6ccq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp5e7"]
 radius = 8.0
@@ -334,6 +335,9 @@ script = ExtResource("6_a3e2a")
 
 [node name="Hurt" type="Node" parent="States"]
 script = ExtResource("9_8141o")
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("11_1u5w7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ih1pd")

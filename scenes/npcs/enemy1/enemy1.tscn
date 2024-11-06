@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=3 uid="uid://b8t4lrool1s5g"]
 
-[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://assets/characters/components/health_component.tscn" id="1_p5g3f"]
+[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="1_p5g3f"]
 [ext_resource type="Texture2D" uid="uid://h0l2s1scf824" path="res://assets/characters/ancient_boss/Ancient Boss.png" id="1_wo3uu"]
-[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://assets/characters/components/hitbox_component.tscn" id="3_opyli"]
+[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="3_opyli"]
 
 [sub_resource type="Animation" id="Animation_u63ad"]
 length = 0.001

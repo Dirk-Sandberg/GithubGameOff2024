@@ -9,7 +9,7 @@ signal hit
 
 @onready var hp = max_hp
 @export var is_player = false
-
+var damage_label_scene = preload("res://scenes/npcs/components/damage_label/damage_label.tscn")
 var dead = false
 
 func _ready():
@@ -21,6 +21,10 @@ func _ready():
 
 func take_damage(damage):
 	if dead: return
+
+	var dmg_label = damage_label_scene.instantiate()
+	dmg_label.text = str(damage)
+	owner.add_child(dmg_label)
 
 	hp -= damage
 	if owner.has_node("States/Hurt"):
@@ -39,3 +43,5 @@ func update_hp_bar():
 func die():
 	died.emit()
 	dead = true
+	if owner.has_node("States/Dead"):
+		owner.change_state("dead")
