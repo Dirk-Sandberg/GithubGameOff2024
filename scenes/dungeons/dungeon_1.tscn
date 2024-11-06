@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq1ge4ijdh8uc"]
+
+[ext_resource type="Texture2D" uid="uid://j0msg5k830ci" path="res://assets/dungeons/block grassy ancient energy.png" id="1_0ruhq"]
+[ext_resource type="PackedScene" uid="uid://cst0j78h1olvf" path="res://scenes/ui/interactable_hint/interactable_area.tscn" id="2_sbj3m"]
+
+[node name="Dungeon1" type="Sprite2D"]
+texture = ExtResource("1_0ruhq")
+
+[node name="InteractableArea" parent="." instance=ExtResource("2_sbj3m")]
+hint_text = "enter"

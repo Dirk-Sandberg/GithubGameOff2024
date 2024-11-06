@@ -1,35 +1,28 @@
-[gd_scene load_steps=25 format=3 uid="uid://d0xq5medhh8eg"]
+[gd_scene load_steps=31 format=3 uid="uid://d0xq5medhh8eg"]
 
 [ext_resource type="Texture2D" uid="uid://dji6gk2wsfpii" path="res://assets/characters/player/sage 52x21.png" id="1_4brig"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gto2v"]
 [ext_resource type="PackedScene" uid="uid://cy8tuhs3abgx2" path="res://scenes/ui/action_wheel/action_wheel.tscn" id="2_68yud"]
 [ext_resource type="Script" path="res://scenes/player/scripts/idle_player_state.gd" id="2_yvlud"]
+[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://assets/characters/components/health_component.tscn" id="3_4lawa"]
+[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://assets/characters/components/hitbox_component.tscn" id="3_fhy3m"]
 [ext_resource type="Script" path="res://scenes/player/scripts/run_player_state.gd" id="3_yxuy7"]
 [ext_resource type="Script" path="res://scenes/player/scripts/attack_player_state.gd" id="4_mvbvo"]
 [ext_resource type="Script" path="res://scenes/player/scripts/jump_player_state.gd" id="5_6rts0"]
 [ext_resource type="Script" path="res://scenes/player/scripts/fall_player_state.gd" id="6_a3e2a"]
 [ext_resource type="Texture2D" uid="uid://b0svpvlhrc1sx" path="res://assets/characters/player/shockwave VFX 137x39.png" id="8_1gqtw"]
+[ext_resource type="Script" path="res://scenes/player/hurt_player_state.gd" id="9_8141o"]
 [ext_resource type="Texture2D" uid="uid://dqwbs6amwqnew" path="res://assets/characters/player/evil shockwave.png" id="9_v0ddo"]
+[ext_resource type="PackedScene" uid="uid://cvf021wq70lxf" path="res://assets/characters/components/attack_box_component.tscn" id="14_w6ccq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_yp5e7"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ih1pd"]
 radius = 9.0
 
-[sub_resource type="Animation" id="Animation_ypsu2"]
-resource_name = "idle"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
-}
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s3jnb"]
+size = Vector2(49, 20)
 
 [sub_resource type="Animation" id="Animation_ot6yh"]
 length = 0.001
@@ -82,154 +75,6 @@ tracks/3/keys = {
 "values": [0]
 }
 
-[sub_resource type="Animation" id="Animation_xspxd"]
-resource_name = "run"
-length = 0.2667
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [32, 33, 34, 35, 36, 37, 38, 39]
-}
-
-[sub_resource type="Animation" id="Animation_h04hi"]
-resource_name = "jump"
-length = 0.1333
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [48, 49, 50, 51]
-}
-
-[sub_resource type="Animation" id="Animation_ydb6i"]
-resource_name = "fall"
-length = 0.1333
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [64, 65, 66, 67]
-}
-
-[sub_resource type="Animation" id="Animation_rhg83"]
-resource_name = "hurt"
-length = 0.1334
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [176, 177, 176, 177]
-}
-
-[sub_resource type="Animation" id="Animation_8wmjh"]
-resource_name = "die"
-length = 0.2667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [192, 193, 194, 195, 196, 197, 198, 199]
-}
-
-[sub_resource type="Animation" id="Animation_6ut4j"]
-resource_name = "melee"
-length = 0.5333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
-}
-
-[sub_resource type="Animation" id="Animation_sjgqa"]
-resource_name = "charge_start"
-length = 0.1333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7)]
-}
-
-[sub_resource type="Animation" id="Animation_weotm"]
-resource_name = "charge_loop"
-length = 0.2667
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [128, 129, 130, 131, 132, 133, 134, 135]
-}
-
-[sub_resource type="Animation" id="Animation_22541"]
-resource_name = "charge_end"
-length = 0.1333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Pivot/Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [144, 145, 146, 147]
-}
-
 [sub_resource type="Animation" id="Animation_t1jaw"]
 resource_name = "charge_blast"
 length = 0.4667
@@ -270,6 +115,171 @@ tracks/2/keys = {
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 }
 
+[sub_resource type="Animation" id="Animation_22541"]
+resource_name = "charge_end"
+length = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [144, 145, 146, 147]
+}
+
+[sub_resource type="Animation" id="Animation_weotm"]
+resource_name = "charge_loop"
+length = 0.2667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [128, 129, 130, 131, 132, 133, 134, 135]
+}
+
+[sub_resource type="Animation" id="Animation_sjgqa"]
+resource_name = "charge_start"
+length = 0.1333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 7), Vector2i(1, 7), Vector2i(2, 7), Vector2i(3, 7)]
+}
+
+[sub_resource type="Animation" id="Animation_8wmjh"]
+resource_name = "die"
+length = 0.2667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [192, 193, 194, 195, 196, 197, 198, 199]
+}
+
+[sub_resource type="Animation" id="Animation_ydb6i"]
+resource_name = "fall"
+length = 0.1333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [64, 65, 66, 67]
+}
+
+[sub_resource type="Animation" id="Animation_rhg83"]
+resource_name = "hurt"
+length = 0.1334
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [176, 177, 176, 177]
+}
+
+[sub_resource type="Animation" id="Animation_ypsu2"]
+resource_name = "idle"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="Animation" id="Animation_h04hi"]
+resource_name = "jump"
+length = 0.1333
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [48, 49, 50, 51]
+}
+
+[sub_resource type="Animation" id="Animation_6ut4j"]
+resource_name = "melee"
+length = 0.5333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.466667, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111]
+}
+
+[sub_resource type="Animation" id="Animation_xspxd"]
+resource_name = "run"
+length = 0.2667
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Pivot/Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [32, 33, 34, 35, 36, 37, 38, 39]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wlla8"]
 _data = {
 "RESET": SubResource("Animation_ot6yh"),
@@ -291,6 +301,19 @@ collision_mask = 2
 script = ExtResource("1_gto2v")
 action_wheel_scene = ExtResource("2_68yud")
 
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_fhy3m")]
+visible = false
+is_player = true
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(0, 2)
+shape = SubResource("CircleShape2D_yp5e7")
+
+[node name="HealthComponent" parent="." instance=ExtResource("3_4lawa")]
+position = Vector2(0, -18)
+is_player = true
+
 [node name="States" type="Node" parent="."]
 
 [node name="Idle" type="Node" parent="States"]
@@ -299,8 +322,9 @@ script = ExtResource("2_yvlud")
 [node name="Run" type="Node" parent="States"]
 script = ExtResource("3_yxuy7")
 
-[node name="Attack" type="Node" parent="States"]
+[node name="Attack" type="Node" parent="States" node_paths=PackedStringArray("attack_hitbox")]
 script = ExtResource("4_mvbvo")
+attack_hitbox = NodePath("../../Pivot/MeleeAttackBox")
 
 [node name="Jump" type="Node" parent="States"]
 script = ExtResource("5_6rts0")
@@ -308,8 +332,10 @@ script = ExtResource("5_6rts0")
 [node name="Fall" type="Node" parent="States"]
 script = ExtResource("6_a3e2a")
 
+[node name="Hurt" type="Node" parent="States"]
+script = ExtResource("9_8141o")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 0)
 shape = SubResource("CircleShape2D_ih1pd")
 debug_color = Color(0, 0.6, 0.701961, 0)
 
@@ -332,6 +358,13 @@ vframes = 4
 position = Vector2(4, -9)
 texture = ExtResource("9_v0ddo")
 hframes = 14
+
+[node name="MeleeAttackBox" parent="Pivot" instance=ExtResource("14_w6ccq")]
+is_player_attack = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/MeleeAttackBox"]
+position = Vector2(14.5, 0)
+shape = SubResource("RectangleShape2D_s3jnb")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

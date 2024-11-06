@@ -12,7 +12,8 @@ extends CharacterBody2D
 	"run": $States/Run,
 	"attack": $States/Attack,
 	"jump": $States/Jump,
-	"fall": $States/Fall
+	"fall": $States/Fall,
+	"hurt": $States/Hurt
 }
 var state: Node
 var action_wheel: Node

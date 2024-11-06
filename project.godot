@@ -25,6 +25,7 @@ window/stretch/mode="canvas_items"
 
 [gui]
 
+theme/custom="res://assets/theme.tres"
 theme/custom_font="res://assets/font/renault-gradient.ttf"
 
 [input]
@@ -76,6 +77,7 @@ action_wheel={
 2d_physics/layer_1="player"
 2d_physics/layer_2="ground"
 2d_physics/layer_3="interactables"
+2d_physics/layer_4="enemy"
 
 [rendering]
 

@@ -1,13 +1,15 @@
 extends BasePlayerState
 
+@export var attack_hitbox: AttackHitboxComponent
+
 var finished = false
 func enter(owner: CharacterBody2D):
 	finished = false
 	owner.animation_player.play("melee")
 	owner.animation_player.speed_scale = 0.6
 	await owner.animation_player.animation_finished
+	attack_hitbox.apply_damage(1)
 	finished = true
-	pass
 
 func exit(owner: CharacterBody2D):
 	pass

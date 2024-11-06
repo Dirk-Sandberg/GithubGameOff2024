@@ -1,6 +1,8 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8t4lrool1s5g"]
+[gd_scene load_steps=19 format=3 uid="uid://b8t4lrool1s5g"]
 
+[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://assets/characters/components/health_component.tscn" id="1_p5g3f"]
 [ext_resource type="Texture2D" uid="uid://h0l2s1scf824" path="res://assets/characters/ancient_boss/Ancient Boss.png" id="1_wo3uu"]
+[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://assets/characters/components/hitbox_component.tscn" id="3_opyli"]
 
 [sub_resource type="Animation" id="Animation_u63ad"]
 length = 0.001
@@ -241,7 +243,13 @@ _data = {
 "walk": SubResource("Animation_brwcb")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_igwqp"]
+radius = 37.0135
+
 [node name="Enemy1" type="Node2D"]
+
+[node name="HealthComponent" parent="." instance=ExtResource("1_p5g3f")]
+position = Vector2(-41, -41)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_wo3uu")
@@ -254,3 +262,10 @@ libraries = {
 }
 autoplay = "idle"
 speed_scale = 0.4
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_opyli")]
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(-35, 0)
+shape = SubResource("CircleShape2D_igwqp")
