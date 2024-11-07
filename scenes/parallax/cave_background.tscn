@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpwhqj4mkrx3f"]
+
+[ext_resource type="Texture2D" uid="uid://bs0coe1tr4sk3" path="res://assets/parallax/cave/1- Background - Sky (1).png" id="1_rm16w"]
+[ext_resource type="Texture2D" uid="uid://bufrlmdsngxpf" path="res://assets/parallax/cave/2 -Background - Mountains (2).png" id="2_neenk"]
+[ext_resource type="Texture2D" uid="uid://bmmltqwq3717y" path="res://assets/parallax/cave/3 -Foreground - Mountains (3).png" id="3_o6jwg"]
+[ext_resource type="Texture2D" uid="uid://brdiyf4tpc4li" path="res://assets/parallax/cave/4- Ground (4).png" id="4_74lam"]
+[ext_resource type="Texture2D" uid="uid://b0n5qvxcx3fcd" path="res://assets/parallax/cave/5- Fog (5).png" id="5_ks283"]
+
+[sub_resource type="Animation" id="Animation_m2wi2"]
+resource_name = "idle"
+loop_mode = 1
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_y8pdi"]
+_data = {
+"idle": SubResource("Animation_m2wi2")
+}
+
+[node name="CaveBackground" type="Node2D"]
+
+[node name="1-Background-Sky(1)" type="Sprite2D" parent="."]
+texture = ExtResource("1_rm16w")
+centered = false
+
+[node name="2-background-Mountains(2)" type="Sprite2D" parent="."]
+texture = ExtResource("2_neenk")
+centered = false
+
+[node name="3-foreground-Mountains(3)" type="Sprite2D" parent="."]
+position = Vector2(0, 9)
+texture = ExtResource("3_o6jwg")
+centered = false
+
+[node name="4-Ground(4)" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 26)
+texture = ExtResource("4_74lam")
+centered = false
+
+[node name="5-Fog(5)" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 32)
+scale = Vector2(1, 1.08594)
+texture = ExtResource("5_ks283")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="5-Fog(5)"]
+libraries = {
+"": SubResource("AnimationLibrary_y8pdi")
+}
+autoplay = "idle"

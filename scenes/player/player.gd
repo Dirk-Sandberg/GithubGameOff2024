@@ -44,9 +44,9 @@ func _unhandled_input(event: InputEvent) -> void:
 		print("A")
 		if not action_wheel or action_wheel.visible == false:
 			show_action_wheel()
-			change_state("attack")
 		else:
 			hide_action_wheel()
+			change_state("attack")
 
 func show_action_wheel():
 	if not action_wheel:
@@ -57,7 +57,6 @@ func show_action_wheel():
 
 func hide_action_wheel():
 	action_wheel.go_away()
-	TransitionManager.change_scene()
 
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:

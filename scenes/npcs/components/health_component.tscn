@@ -4,16 +4,18 @@
 [ext_resource type="Texture2D" uid="uid://c61db8a4ubfo8" path="res://assets/ui/outline-hp-texture.png" id="1_u6ex1"]
 [ext_resource type="Texture2D" uid="uid://cjpq78mb3yc6e" path="res://assets/ui/red-hp-texture.png" id="2_hb2as"]
 
-[node name="HealthComponent" type="Node2D"]
-z_index = 10
-z_as_relative = false
-script = ExtResource("1_hlrfl")
-
-[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+[node name="HealthComponent" type="TextureProgressBar"]
 offset_left = -21.0
-offset_right = 21.0
+offset_right = 49.0
 offset_bottom = 8.0
+size_flags_horizontal = 3
 max_value = 1.0
 step = 0.01
+nine_patch_stretch = true
+stretch_margin_left = 4
+stretch_margin_top = 4
+stretch_margin_right = 4
+stretch_margin_bottom = 4
 texture_over = ExtResource("1_u6ex1")
 texture_progress = ExtResource("2_hb2as")
+script = ExtResource("1_hlrfl")

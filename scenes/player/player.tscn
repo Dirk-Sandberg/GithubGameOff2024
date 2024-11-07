@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://d0xq5medhh8eg"]
+[gd_scene load_steps=36 format=3 uid="uid://d0xq5medhh8eg"]
 
 [ext_resource type="Texture2D" uid="uid://dji6gk2wsfpii" path="res://assets/characters/player/sage 52x21.png" id="1_4brig"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gto2v"]
@@ -15,6 +15,10 @@
 [ext_resource type="Texture2D" uid="uid://dqwbs6amwqnew" path="res://assets/characters/player/evil shockwave.png" id="9_v0ddo"]
 [ext_resource type="Script" path="res://scenes/player/dead_player_state.gd" id="11_1u5w7"]
 [ext_resource type="PackedScene" uid="uid://cvf021wq70lxf" path="res://scenes/npcs/components/attack_box_component.tscn" id="14_w6ccq"]
+[ext_resource type="Texture2D" uid="uid://bneb667kyctka" path="res://assets/ui/bottom-border1-texture.png" id="16_7fix8"]
+[ext_resource type="Texture2D" uid="uid://da8t3pqybpgdh" path="res://assets/ui/test1.png" id="17_hhe13"]
+[ext_resource type="Texture2D" uid="uid://wdmf4falbqtq" path="res://assets/ui/test2.png" id="18_i24ij"]
+[ext_resource type="Texture2D" uid="uid://1j1y6qv1e7mw" path="res://assets/ui/sage_icon.png" id="19_cycat"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp5e7"]
 radius = 8.0
@@ -305,15 +309,11 @@ action_wheel_scene = ExtResource("2_68yud")
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_fhy3m")]
 visible = false
 is_player = true
-health_component = NodePath("../HealthComponent")
+health_component = NodePath("../HUD/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_yp5e7")
-
-[node name="HealthComponent" parent="." instance=ExtResource("3_4lawa")]
-position = Vector2(0, -18)
-is_player = true
 
 [node name="States" type="Node" parent="."]
 
@@ -381,5 +381,38 @@ limit_top = 0
 limit_bottom = 180
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="PanelContainer" type="PanelContainer" parent="HUD"]
+visible = false
+offset_right = 100.0
+offset_bottom = 50.0
+
+[node name="Sprite2D2" type="Sprite2D" parent="HUD/PanelContainer"]
+visible = false
+position = Vector2(25, 29.5)
+texture = ExtResource("17_hhe13")
+
+[node name="SageIcon" type="Sprite2D" parent="HUD/PanelContainer"]
+position = Vector2(16, 14)
+texture = ExtResource("19_cycat")
+
+[node name="Sprite2D" type="Sprite2D" parent="HUD"]
+position = Vector2(27, 19)
+texture = ExtResource("16_7fix8")
+
+[node name="Test2" type="Sprite2D" parent="HUD"]
+visible = false
+position = Vector2(25, 9)
+texture = ExtResource("18_i24ij")
+
+[node name="HealthComponent" parent="HUD" instance=ExtResource("3_4lawa")]
+offset_left = 4.0
+offset_top = 3.0
+offset_right = 92.0
+offset_bottom = 11.0
+size_flags_horizontal = 1
+is_player = true
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

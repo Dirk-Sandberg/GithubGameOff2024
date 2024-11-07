@@ -1,4 +1,4 @@
-extends Node2D
+extends TextureProgressBar
 class_name HealthComponent
 
 signal died
@@ -14,7 +14,7 @@ var dead = false
 
 func _ready():
 	if is_player:
-		$TextureProgressBar.texture_progress = load("res://assets/ui/blue-hp-texture.png")
+		texture_progress = load("res://assets/ui/blue-hp-texture.png")
 	await get_tree().process_frame
 	
 	update_hp_bar()
@@ -38,7 +38,7 @@ func take_damage(damage):
 	update_hp_bar()
 
 func update_hp_bar():
-	$TextureProgressBar.value = hp / max_hp
+	value = hp / max_hp
 
 func die():
 	died.emit()
