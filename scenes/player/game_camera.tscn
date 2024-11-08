@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/player/game_camera.gd" id="1_jjcyg"]
 
-[node name="GameCamera" type="Camera2D"]
+[node name="GameCamera" type="Camera2D" groups=["camera"]]
 limit_top = 0
 limit_bottom = 180
 script = ExtResource("1_jjcyg")

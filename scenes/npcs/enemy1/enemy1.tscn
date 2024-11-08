@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b8t4lrool1s5g"]
+[gd_scene load_steps=28 format=3 uid="uid://b8t4lrool1s5g"]
 
 [ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="1_p5g3f"]
 [ext_resource type="Texture2D" uid="uid://h0l2s1scf824" path="res://assets/characters/ancient_boss/Ancient Boss.png" id="1_wo3uu"]
@@ -7,6 +7,11 @@
 [ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="3_opyli"]
 [ext_resource type="PackedScene" uid="uid://xggwb8yohrs2" path="res://scenes/npcs/components/movement_component.tscn" id="4_s7o6y"]
 [ext_resource type="PackedScene" uid="uid://c8kxyuly47r3d" path="res://scenes/npcs/components/attacking_component.tscn" id="5_sdxvq"]
+[ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_move_state.gd" id="8_rdyq3"]
+[ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/base_enemy_state.gd" id="9_3wneh"]
+[ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_attack1_state.gd" id="10_b7633"]
+[ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_idle_state.gd" id="11_rt7es"]
+[ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_waking_state.gd" id="12_4r678"]
 
 [sub_resource type="Animation" id="Animation_u63ad"]
 length = 0.001
@@ -259,15 +264,18 @@ offset_top = -41.0
 offset_right = 29.0
 offset_bottom = -33.0
 
-[node name="TurnComponent" parent="." node_paths=PackedStringArray("movement_node", "attacking_node") instance=ExtResource("2_7www6")]
-movement_node = NodePath("../MovementComponent")
-attacking_node = NodePath("../AttackingComponent")
+[node name="TurnComponent" parent="." node_paths=PackedStringArray("movement_state_node", "attacking_state_node") instance=ExtResource("2_7www6")]
+movement_state_node = NodePath("../States/MoveTowardsPlayer")
+attacking_state_node = NodePath("../States/Attack1")
 
-[node name="MovementComponent" parent="." instance=ExtResource("4_s7o6y")]
+[node name="RemovemeMovementComponent" parent="." instance=ExtResource("4_s7o6y")]
+visible = false
 
-[node name="AttackingComponent" parent="." instance=ExtResource("5_sdxvq")]
+[node name="RemovemeAttackingComponent" parent="." instance=ExtResource("5_sdxvq")]
+visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1, -38)
 texture = ExtResource("1_wo3uu")
 hframes = 24
 vframes = 12
@@ -276,12 +284,29 @@ vframes = 12
 libraries = {
 "": SubResource("AnimationLibrary_a34lj")
 }
-autoplay = "idle"
 speed_scale = 0.4
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_opyli")]
+position = Vector2(0, -36)
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(-35, 0)
 shape = SubResource("CircleShape2D_igwqp")
+
+[node name="States" type="Node" parent="."]
+
+[node name="MoveTowardsPlayer" type="Node" parent="States"]
+script = ExtResource("8_rdyq3")
+
+[node name="Sleep" type="Node" parent="States"]
+script = ExtResource("9_3wneh")
+
+[node name="Attack1" type="Node" parent="States"]
+script = ExtResource("10_b7633")
+
+[node name="Idle" type="Node" parent="States"]
+script = ExtResource("11_rt7es")
+
+[node name="Wake" type="Node" parent="States"]
+script = ExtResource("12_4r678")

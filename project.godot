@@ -33,6 +33,7 @@ window/stretch/mode="canvas_items"
 player=""
 player_ghost=""
 enemy=""
+camera=""
 
 [gui]
 

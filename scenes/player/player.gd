@@ -69,7 +69,7 @@ func _physics_process(delta: float) -> void:
 	if TurnManager.current_combatant == self and velocity:
 		current_move_time_left -= delta
 		update_movement_bar()
-		if ghost: ghost.show()
+		if ghost and is_instance_valid(ghost): ghost.show()
 	
 	if is_on_floor():
 		last_floor_pos = global_position

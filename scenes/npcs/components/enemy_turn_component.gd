@@ -4,20 +4,23 @@ extends Node2D
 signal turn_finished
 signal turn_started
 
-@export var movement_node: MovementComponent
-@export var attacking_node: AttackingComponent
+@export var movement_state_node: BaseEnemyState
+@export var attacking_state_node: BaseEnemyState
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	movement_node.finished_moving.connect(on_finished_moving)
-	attacking_node.finished_attacking.connect(on_finished_attacking)
+	movement_state_node.finished_moving.connect(on_finished_moving)
+	attacking_state_node.finished_attacking.connect(on_finished_attacking)
 
 func on_finished_moving():
-	attacking_node.attack()
+	owner.change_state("attack")
+	#attacking_node.attack()
 
 func on_finished_attacking():
 	turn_finished.emit()
 	
 func take_turn():
-	movement_node.move()
-	await movement_node.finished_moving
+	#movement_node.move()
+	owner.change_state("move")
+	await movement_state_node.finished_moving
+	#await movement_node.finished_moving

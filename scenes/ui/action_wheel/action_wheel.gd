@@ -10,12 +10,16 @@ var descriptions = [
 	"Ability four. Press 4 to confirm.",
 	"End turn. Press 5 to confirm."
 ]
-
+@onready var player = get_tree().get_first_node_in_group("player")
 func _ready() -> void:
 	hide()
 
 func display():
 	highlighted_idx = -1
+	if TurnManager.is_player_turn():
+		%Icon5.show()
+	else:
+		%Icon5.hide()
 	show()
 
 func go_away():
@@ -34,7 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		highlight_skill(2)
 	if event.is_action_pressed("four"):
 		highlight_skill(3)
-	if event.is_action_pressed("five"):
+	if event.is_action_pressed("five") and TurnManager.is_player_turn():
 		highlight_skill(4)
 
 func confirm_choice(idx):

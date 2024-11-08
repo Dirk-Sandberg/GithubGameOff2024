@@ -1,6 +1,7 @@
 extends Node
 
 signal new_combatant(node: Node2D)
+signal combat_started
 
 var npcs_in_combat = []
 var current_combatant: Node2D
@@ -10,13 +11,18 @@ func _ready() -> void:
 	%Label.hide()
 	%Decor.hide()
 
+func is_player_turn():
+	var player = get_tree().get_first_node_in_group("player")
+	return current_combatant == player
 
 func begin_combat(enemies):
 	show_text("Begin Combat")
-	do_combat(enemies)
+	combat_started.emit()
+	await do_combat(enemies)
 
 func do_combat(enemies):
 	var player = get_tree().get_first_node_in_group("player")
+	var camera = get_tree().get_first_node_in_group("camera")
 	var combatants = [player] + enemies
 	var combatants_to_remove = []
 	for combatant in combatants:
@@ -26,8 +32,9 @@ func do_combat(enemies):
 		if combatant == player:
 			show_text("Player Turn")
 		current_combatant = combatant
-		combatant.get_node("TurnComponent").take_turn()
 		new_combatant.emit(combatant)
+		await camera.finished_lerping
+		combatant.get_node("TurnComponent").take_turn()
 		await combatant.get_node("TurnComponent").turn_finished
 	current_combatant = null
 
