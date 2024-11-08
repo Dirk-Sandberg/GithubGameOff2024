@@ -2,8 +2,6 @@ extends BasePlayerState
 class_name CanMoveState
 
 
-#Need a CanMove player state for X/Y movement
-
 @export var BASE_SPEED = 60.0
 
 func enter(owner: CharacterBody2D, previous_state: Node):
@@ -13,7 +11,10 @@ func exit(owner: CharacterBody2D):
 	pass
 
 func physics_process(owner: CharacterBody2D, delta: float) -> String:
-	#var velocity = owner.velocity
+	if not owner.can_move: 
+		if owner.state != owner.states["idle"]:
+			return "idle"
+		else: return ""
 
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and owner.is_on_floor():

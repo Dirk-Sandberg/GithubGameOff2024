@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://cy8tuhs3abgx2"]
+[gd_scene load_steps=9 format=3 uid="uid://cy8tuhs3abgx2"]
 
 [ext_resource type="Texture2D" uid="uid://l40mlbkfsrje" path="res://assets/icons/Numbers Separated/Number1.png" id="1_dsfdi"]
 [ext_resource type="Script" path="res://scenes/ui/action_wheel/action_wheel.gd" id="1_wdfaa"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://cywh4gsdtpkgq" path="res://assets/icons/Numbers Separated/Number2.png" id="2_0hfjv"]
 [ext_resource type="Texture2D" uid="uid://0mmjo00our67" path="res://assets/icons/Numbers Separated/Number3.png" id="3_hwnaj"]
 [ext_resource type="Texture2D" uid="uid://q4ibikn7tm6n" path="res://assets/icons/Numbers Separated/Number4.png" id="4_a2akq"]
+[ext_resource type="Texture2D" uid="uid://dth06vfn2nmaw" path="res://assets/checkmark-ui-icon.png" id="7_218rs"]
+[ext_resource type="Texture2D" uid="uid://kkpf7jqy70rf" path="res://assets/icons/Numbers Separated/Number5.png" id="8_v8yu5"]
 
 [node name="ActionWheel" type="VBoxContainer"]
 z_index = 20
@@ -22,6 +24,7 @@ layout_mode = 2
 theme_type_variation = &"PanelContainer4"
 
 [node name="Label" type="Label" parent="ActionWheel"]
+unique_name_in_owner = true
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
@@ -87,3 +90,17 @@ offset_top = -7.0
 offset_right = 30.0
 offset_bottom = 9.0
 texture_normal = ExtResource("4_a2akq")
+
+[node name="Icon5" type="TextureButton" parent="HBoxContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+texture_normal = ExtResource("7_218rs")
+
+[node name="Number5" type="TextureButton" parent="HBoxContainer2/Icon5"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 14.0
+offset_top = -7.0
+offset_right = 30.0
+offset_bottom = 9.0
+texture_normal = ExtResource("8_v8yu5")

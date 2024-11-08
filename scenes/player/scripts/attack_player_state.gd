@@ -1,4 +1,5 @@
 extends BasePlayerState
+signal attack_finished
 
 @export var attack_hitbox: AttackHitboxComponent
 
@@ -10,6 +11,7 @@ func enter(owner: CharacterBody2D, previous_state: Node):
 	await owner.animation_player.animation_finished
 	attack_hitbox.apply_damage(1)
 	finished = true
+	attack_finished.emit()
 
 func exit(owner: CharacterBody2D):
 	pass

@@ -1,27 +1,60 @@
 extends Control
+signal turn_ended
 
 var tween: Tween
+var highlighted_idx = -1
+var descriptions = [
+	"Ability one. Press 1 to confirm.",
+	"Ability two. Press 2 to confirm.",
+	"Ability three. Press 3 to confirm.",
+	"Ability four. Press 4 to confirm.",
+	"End turn. Press 5 to confirm."
+]
+
+func _ready() -> void:
+	hide()
 
 func display():
+	highlighted_idx = -1
 	show()
 
 func go_away():
 	unhighlight_all()
 	hide()
 
+func update_label(idx):
+	%Label.text = descriptions[idx]
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("one"):
-		highlight_skill(%Number1)
+		highlight_skill(0)
 	if event.is_action_pressed("two"):
-		highlight_skill(%Number2)
+		highlight_skill(1)
 	if event.is_action_pressed("three"):
-		highlight_skill(%Number3)
+		highlight_skill(2)
 	if event.is_action_pressed("four"):
-		highlight_skill(%Number4)
-	
-func highlight_skill(number_node):
-	var icons = [%Icon1, %Icon2, %Icon3, %Icon4]
-	var numbers = [%Number1, %Number2, %Number3, %Number4]
+		highlight_skill(3)
+	if event.is_action_pressed("five"):
+		highlight_skill(4)
+
+func confirm_choice(idx):
+	if idx == 4:
+		go_away()
+		turn_ended.emit()
+	else:
+		owner.change_state("attack")
+		go_away()
+
+func highlight_skill(idx):
+	if highlighted_idx == idx:
+		confirm_choice(idx)
+		return
+	highlighted_idx = idx
+
+	update_label(idx)
+	#var icons = [%Icon1, %Icon2, %Icon3, %Icon4]
+	var numbers = [%Number1, %Number2, %Number3, %Number4, %Number5]
+	var number_node = numbers[idx]
 	numbers.erase(number_node)
 	
 	for number in numbers:
@@ -35,7 +68,7 @@ func highlight_skill(number_node):
 	tween.tween_property(number_node, "modulate", Color.WHITE, .5)
 
 func unhighlight_all():
-	var numbers = [%Number1, %Number2, %Number3, %Number4]
+	var numbers = [%Number1, %Number2, %Number3, %Number4, %Number5]
 	for number in numbers:
 		number.modulate = Color.WHITE
 
@@ -43,4 +76,5 @@ func unhighlight_all():
 		tween.stop()
 		tween = null
 	
-	
+func end_turn():
+	turn_ended.emit()

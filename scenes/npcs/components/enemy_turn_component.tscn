@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://brb8tyt84ox8h"]
+
+[ext_resource type="Script" path="res://scenes/npcs/components/enemy_turn_component.gd" id="1_mq3wp"]
+
+[node name="EnemyTurnComponent" type="Node2D"]
+script = ExtResource("1_mq3wp")

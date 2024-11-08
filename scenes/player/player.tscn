@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://d0xq5medhh8eg"]
+[gd_scene load_steps=38 format=3 uid="uid://d0xq5medhh8eg"]
 
 [ext_resource type="Texture2D" uid="uid://dji6gk2wsfpii" path="res://assets/characters/player/sage 52x21.png" id="1_4brig"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_gto2v"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="3_4lawa"]
 [ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="3_fhy3m"]
 [ext_resource type="Script" path="res://scenes/player/scripts/run_player_state.gd" id="3_yxuy7"]
+[ext_resource type="PackedScene" uid="uid://dkyscaximn1pg" path="res://scenes/npcs/components/player_turn_component.tscn" id="4_m0j1r"]
 [ext_resource type="Script" path="res://scenes/player/scripts/attack_player_state.gd" id="4_mvbvo"]
 [ext_resource type="Script" path="res://scenes/player/scripts/jump_player_state.gd" id="5_6rts0"]
 [ext_resource type="Script" path="res://scenes/player/scripts/fall_player_state.gd" id="6_a3e2a"]
@@ -15,10 +16,11 @@
 [ext_resource type="Texture2D" uid="uid://dqwbs6amwqnew" path="res://assets/characters/player/evil shockwave.png" id="9_v0ddo"]
 [ext_resource type="Script" path="res://scenes/player/dead_player_state.gd" id="11_1u5w7"]
 [ext_resource type="PackedScene" uid="uid://cvf021wq70lxf" path="res://scenes/npcs/components/attack_box_component.tscn" id="14_w6ccq"]
-[ext_resource type="Texture2D" uid="uid://bneb667kyctka" path="res://assets/ui/bottom-border1-texture.png" id="16_7fix8"]
 [ext_resource type="Texture2D" uid="uid://da8t3pqybpgdh" path="res://assets/ui/test1.png" id="17_hhe13"]
+[ext_resource type="Texture2D" uid="uid://d288kom83wg7c" path="res://assets/ui/ui-decal2.png" id="17_kxjdo"]
 [ext_resource type="Texture2D" uid="uid://wdmf4falbqtq" path="res://assets/ui/test2.png" id="18_i24ij"]
 [ext_resource type="Texture2D" uid="uid://1j1y6qv1e7mw" path="res://assets/ui/sage_icon.png" id="19_cycat"]
+[ext_resource type="Script" path="res://scenes/player/movement_progress_bar.gd" id="20_35ew4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_yp5e7"]
 radius = 8.0
@@ -304,7 +306,6 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 collision_mask = 2
 script = ExtResource("1_gto2v")
-action_wheel_scene = ExtResource("2_68yud")
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_fhy3m")]
 visible = false
@@ -314,6 +315,9 @@ health_component = NodePath("../HUD/HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
 position = Vector2(0, 2)
 shape = SubResource("CircleShape2D_yp5e7")
+
+[node name="TurnComponent" parent="." node_paths=PackedStringArray("action_wheel_component") instance=ExtResource("4_m0j1r")]
+action_wheel_component = NodePath("../ActionWheel")
 
 [node name="States" type="Node" parent="."]
 
@@ -364,6 +368,7 @@ texture = ExtResource("9_v0ddo")
 hframes = 14
 
 [node name="MeleeAttackBox" parent="Pivot" instance=ExtResource("14_w6ccq")]
+position = Vector2(-9, 0)
 is_player_attack = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pivot/MeleeAttackBox"]
@@ -375,10 +380,6 @@ libraries = {
 "": SubResource("AnimationLibrary_wlla8")
 }
 speed_scale = 0.3
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_top = 0
-limit_bottom = 180
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
@@ -398,9 +399,10 @@ texture = ExtResource("17_hhe13")
 position = Vector2(16, 14)
 texture = ExtResource("19_cycat")
 
-[node name="Sprite2D" type="Sprite2D" parent="HUD"]
-position = Vector2(27, 19)
-texture = ExtResource("16_7fix8")
+[node name="Decal" type="Sprite2D" parent="HUD"]
+position = Vector2(34, 26)
+texture = ExtResource("17_kxjdo")
+flip_v = true
 
 [node name="Test2" type="Sprite2D" parent="HUD"]
 visible = false
@@ -408,11 +410,54 @@ position = Vector2(25, 9)
 texture = ExtResource("18_i24ij")
 
 [node name="HealthComponent" parent="HUD" instance=ExtResource("3_4lawa")]
-offset_left = 4.0
-offset_top = 3.0
-offset_right = 92.0
-offset_bottom = 11.0
+offset_left = 7.0
+offset_top = 5.0
+offset_right = 61.0
+offset_bottom = 13.0
 size_flags_horizontal = 1
 is_player = true
+
+[node name="Label" type="Label" parent="HUD/HealthComponent"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 22.0
+offset_top = -6.0
+offset_right = 22.0
+offset_bottom = 11.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.25, 0.25)
+text = "hp"
+
+[node name="MovementProgressBar" type="ProgressBar" parent="HUD"]
+unique_name_in_owner = true
+z_index = 20
+z_as_relative = false
+offset_left = 8.0
+offset_top = 14.0
+offset_right = 46.0
+offset_bottom = 20.0
+max_value = 1.0
+value = 0.5
+show_percentage = false
+script = ExtResource("20_35ew4")
+
+[node name="Label" type="Label" parent="HUD/MovementProgressBar"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 1.0
+offset_right = 85.0
+offset_bottom = 18.0
+scale = Vector2(0.25, 0.25)
+text = "movement"
+
+[node name="ActionWheel" parent="." instance=ExtResource("2_68yud")]
+offset_left = -30.0
+offset_top = -44.0
+offset_right = 90.0
+offset_bottom = 23.0
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ds7p6sahbqc8x"]
+
+[ext_resource type="Script" path="res://scenes/player/game_camera.gd" id="1_jjcyg"]
+
+[node name="GameCamera" type="Camera2D"]
+limit_top = 0
+limit_bottom = 180
+script = ExtResource("1_jjcyg")
