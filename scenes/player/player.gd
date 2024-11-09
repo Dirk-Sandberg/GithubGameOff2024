@@ -31,11 +31,6 @@ func _ready() -> void:
 	change_state("idle")
 
 
-
-	await get_tree().create_timer(2.0).timeout
-	TurnManager.begin_combat(get_tree().get_nodes_in_group("enemy"))
-
-
 func on_turn_started():
 	current_move_time_left = max_move_time
 	update_movement_bar()
@@ -81,7 +76,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			show_action_wheel()
 		else:
 			hide_action_wheel()
-			change_state("attack")
 
 func show_action_wheel():
 	action_wheel.display()

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnvxlp6kg3jt2"]
+
+[ext_resource type="Script" path="res://scenes/autoload/screen_shake.gd" id="1_re1n4"]
+[ext_resource type="Shader" path="res://scenes/autoload/screen_shake.gdshader" id="2_nxt83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ya5m"]
+shader = ExtResource("2_nxt83")
+shader_parameter/ShakeStrength = 0.0
+shader_parameter/FactorA = Vector2(100, 100)
+shader_parameter/FactorB = Vector2(1, 1)
+shader_parameter/magnitude = Vector2(0.01, 0.01)
+
+[node name="ScreenShake" type="CanvasLayer"]
+script = ExtResource("1_re1n4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_8ya5m")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2

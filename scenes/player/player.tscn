@@ -426,13 +426,13 @@ anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 22.0
-offset_top = -6.0
+offset_top = -7.0
 offset_right = 22.0
-offset_bottom = 11.0
+offset_bottom = 16.0
 grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(0.25, 0.25)
-text = "hp"
+text = "HP"
 
 [node name="MovementProgressBar" type="ProgressBar" parent="HUD"]
 unique_name_in_owner = true
@@ -450,16 +450,15 @@ script = ExtResource("20_35ew4")
 [node name="Label" type="Label" parent="HUD/MovementProgressBar"]
 layout_mode = 0
 offset_left = 10.0
-offset_top = 1.0
-offset_right = 85.0
-offset_bottom = 18.0
+offset_right = 94.0
+offset_bottom = 23.0
 scale = Vector2(0.25, 0.25)
-text = "movement"
+text = "Movement"
 
 [node name="ActionWheel" parent="." instance=ExtResource("2_68yud")]
 offset_left = -30.0
-offset_top = -44.0
-offset_right = 90.0
-offset_bottom = 23.0
+offset_top = -49.0
+offset_right = 114.0
+offset_bottom = 18.0
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

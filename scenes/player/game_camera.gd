@@ -4,7 +4,7 @@ signal finished_lerping
 
 @onready var player = get_tree().get_first_node_in_group("player")
 
-var lerp_speed = 7
+var lerp_speed = 5
 var lerp_target: Node2D
 var awaiting_lerp_finished = false
 

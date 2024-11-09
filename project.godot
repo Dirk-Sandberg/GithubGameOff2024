@@ -13,12 +13,15 @@ config_version=5
 config/name="GithubJam2024"
 run/main_scene="res://concept.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
+boot_splash/bg_color=Color(0.101961, 0.101961, 0.101961, 1)
+boot_splash/image="res://assets/ui/golbin_mode_logo-full.png"
 config/icon="res://icon.svg"
 
 [autoload]
 
 TransitionManager="*res://scenes/autoload/transition_manager.tscn"
 TurnManager="*res://scenes/autoload/turn_manager.tscn"
+ScreenShake="*res://scenes/autoload/screen_shake.tscn"
 
 [display]
 
@@ -38,7 +41,6 @@ camera=""
 [gui]
 
 theme/custom="res://assets/theme.tres"
-theme/custom_font="res://assets/font/renault-gradient.ttf"
 
 [input]
 
@@ -144,4 +146,3 @@ five={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-2d/snap/snap_2d_transforms_to_pixel=true

@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=11 format=3 uid="uid://dpdsv1o3830fp"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://dpdsv1o3830fp"]
 
 [ext_resource type="Texture2D" uid="uid://bcy4mpcar04l5" path="res://assets/ui/UI - 16x16 UI Tileset.png" id="1_8sq4t"]
+[ext_resource type="Texture2D" uid="uid://c5ycqk10m6fr1" path="res://assets/ui/ui-textures-filled.png" id="2_4ixar"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_heyit"]
 texture = ExtResource("1_8sq4t")
@@ -39,7 +40,7 @@ axis_stretch_vertical = 1
 region_rect = Rect2(112, 64, 48, 48)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_y1lcm"]
-texture = ExtResource("1_8sq4t")
+texture = ExtResource("2_4ixar")
 texture_margin_left = 8.0
 texture_margin_top = 8.0
 texture_margin_right = 8.0

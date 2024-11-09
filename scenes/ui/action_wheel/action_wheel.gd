@@ -4,10 +4,10 @@ signal turn_ended
 var tween: Tween
 var highlighted_idx = -1
 var descriptions = [
-	"Ability one. Press 1 to confirm.",
-	"Ability two. Press 2 to confirm.",
-	"Ability three. Press 3 to confirm.",
-	"Ability four. Press 4 to confirm.",
+	"Melee attack. Press 1 to confirm.",
+	"Melee attack. Press 2 to confirm.",
+	"Melee attack. Press 3 to confirm.",
+	"Melee attack. Press 4 to confirm.",
 	"End turn. Press 5 to confirm."
 ]
 @onready var player = get_tree().get_first_node_in_group("player")
@@ -25,6 +25,7 @@ func display():
 func go_away():
 	unhighlight_all()
 	hide()
+	highlighted_idx = -1
 
 func update_label(idx):
 	%Label.text = descriptions[idx]
