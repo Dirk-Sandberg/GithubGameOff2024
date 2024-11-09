@@ -1,12 +1,10 @@
-[gd_scene load_steps=28 format=3 uid="uid://b8t4lrool1s5g"]
+[gd_scene load_steps=26 format=3 uid="uid://b8t4lrool1s5g"]
 
 [ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="1_p5g3f"]
-[ext_resource type="Texture2D" uid="uid://h0l2s1scf824" path="res://assets/characters/ancient_boss/Ancient Boss.png" id="1_wo3uu"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/enemy_1.gd" id="1_xdgsv"]
 [ext_resource type="PackedScene" uid="uid://brb8tyt84ox8h" path="res://scenes/npcs/components/enemy_turn_component.tscn" id="2_7www6"]
 [ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="3_opyli"]
-[ext_resource type="PackedScene" uid="uid://xggwb8yohrs2" path="res://scenes/npcs/components/movement_component.tscn" id="4_s7o6y"]
-[ext_resource type="PackedScene" uid="uid://c8kxyuly47r3d" path="res://scenes/npcs/components/attacking_component.tscn" id="5_sdxvq"]
+[ext_resource type="Texture2D" uid="uid://hfvasuf4vkt3" path="res://assets/characters/ancient_boss/Ancient Boss_padded.png" id="4_8y1n4"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_move_state.gd" id="8_rdyq3"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/base_enemy_state.gd" id="9_3wneh"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_attack1_state.gd" id="10_b7633"]
@@ -268,15 +266,9 @@ offset_bottom = -33.0
 movement_state_node = NodePath("../States/MoveTowardsPlayer")
 attacking_state_node = NodePath("../States/Attack1")
 
-[node name="RemovemeMovementComponent" parent="." instance=ExtResource("4_s7o6y")]
-visible = false
-
-[node name="RemovemeAttackingComponent" parent="." instance=ExtResource("5_sdxvq")]
-visible = false
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-1, -38)
-texture = ExtResource("1_wo3uu")
+position = Vector2(0, -38)
+texture = ExtResource("4_8y1n4")
 hframes = 24
 vframes = 12
 
@@ -287,7 +279,7 @@ libraries = {
 speed_scale = 0.4
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_opyli")]
-position = Vector2(0, -36)
+position = Vector2(33, -36)
 health_component = NodePath("../HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
