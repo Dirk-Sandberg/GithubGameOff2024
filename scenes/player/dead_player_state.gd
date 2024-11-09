@@ -2,7 +2,7 @@ extends BasePlayerState
 
 var done_animating = false
 
-func enter(owner: CharacterBody2D, previous_state: Node):
+func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: String):
 	done_animating = false
 	owner.animation_player.play("die")
 	await owner.animation_player.animation_finished

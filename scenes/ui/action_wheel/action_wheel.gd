@@ -1,5 +1,5 @@
 extends Control
-signal turn_ended
+#signal turn_ended
 
 var tween: Tween
 var highlighted_idx = -1
@@ -28,7 +28,8 @@ func go_away():
 	highlighted_idx = -1
 
 func update_label(idx):
-	%Label.text = descriptions[idx]
+	%Label.text = Abilities.abilities[idx].description
+	#%Label.text = descriptions[idx]
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("one"):
@@ -45,9 +46,13 @@ func _unhandled_input(event: InputEvent) -> void:
 func confirm_choice(idx):
 	if idx == 4:
 		go_away()
-		turn_ended.emit()
+		end_turn()
 	else:
-		owner.change_state("attack")
+		var ability = Abilities.abilities[idx]
+		ability.cast()
+		#owner.change_state(ability["player_animation_name"])
+		#owner.change_state("attack")
+		
 		go_away()
 
 func highlight_skill(idx):
@@ -82,4 +87,5 @@ func unhighlight_all():
 		tween = null
 	
 func end_turn():
-	turn_ended.emit()
+	TurnManager.player_turn_ended.emit()
+	#turn_ended.emit()

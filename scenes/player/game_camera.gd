@@ -22,4 +22,8 @@ func _process(delta: float) -> void:
 		if global_position.is_equal_approx(lerp_target.global_position):
 			awaiting_lerp_finished = false
 			finished_lerping.emit()
+
+func lerp_zoom(n):
+	var tween = create_tween().set_trans(Tween.TRANS_CIRC)
+	tween.tween_property(self, "zoom", Vector2.ONE * n, 0.5)
 			

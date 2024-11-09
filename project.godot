@@ -22,6 +22,7 @@ config/icon="res://icon.svg"
 TransitionManager="*res://scenes/autoload/transition_manager.tscn"
 TurnManager="*res://scenes/autoload/turn_manager.tscn"
 ScreenShake="*res://scenes/autoload/screen_shake.tscn"
+Abilities="*res://scenes/autoload/abilities.tscn"
 
 [display]
 

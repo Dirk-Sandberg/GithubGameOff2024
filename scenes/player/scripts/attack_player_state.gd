@@ -4,7 +4,7 @@ signal attack_finished
 @export var attack_hitbox: AttackHitboxComponent
 
 var finished = false
-func enter(owner: CharacterBody2D, previous_state: Node):
+func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: String):
 	finished = false
 	owner.animation_player.play("melee")
 	owner.animation_player.speed_scale = 0.6

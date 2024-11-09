@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://b8t4lrool1s5g"]
+[gd_scene load_steps=31 format=3 uid="uid://b8t4lrool1s5g"]
 
 [ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="1_p5g3f"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/enemy_1.gd" id="1_xdgsv"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_move_state.gd" id="8_rdyq3"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/base_enemy_state.gd" id="9_3wneh"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_attack1_state.gd" id="10_b7633"]
+[ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_die_state.gd" id="11_5ns4g"]
 [ext_resource type="Texture2D" uid="uid://dr6qmbg2cwwpl" path="res://assets/ui/boss-decal.png" id="11_qnf0g"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_idle_state.gd" id="11_rt7es"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_waking_state.gd" id="12_4r678"]
@@ -340,6 +341,9 @@ script = ExtResource("11_rt7es")
 
 [node name="Wake" type="Node" parent="States"]
 script = ExtResource("12_4r678")
+
+[node name="Dead" type="Node" parent="States"]
+script = ExtResource("11_5ns4g")
 
 [node name="AggroArea" type="Area2D" parent="."]
 collision_layer = 0

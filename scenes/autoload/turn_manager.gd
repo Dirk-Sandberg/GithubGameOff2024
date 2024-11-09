@@ -1,5 +1,6 @@
 extends Node
 
+signal player_turn_ended
 signal new_combatant(node: Node2D)
 signal combat_started
 

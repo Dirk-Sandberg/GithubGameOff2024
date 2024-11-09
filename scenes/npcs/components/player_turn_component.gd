@@ -5,14 +5,16 @@ signal turn_started
 
 #@export var owner_state_machine: Node
 #@export var attack_state_component: Node
-@export var action_wheel_component: Node
+#@export var action_wheel_component: Node
 
 var can_move = true
 var can_attack = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	action_wheel_component.turn_ended.connect(on_end_turn)
+	#action_wheel_component.turn_ended.connect(on_end_turn)
+	TurnManager.player_turn_ended.connect(on_end_turn)
+			#turn_ended.emit()
 
 func on_end_turn():
 	turn_finished.emit()

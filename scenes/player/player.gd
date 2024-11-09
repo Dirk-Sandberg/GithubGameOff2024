@@ -5,6 +5,9 @@ class_name Player
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var pivot: Node2D = $Pivot
 @onready var health_component: HealthComponent = $HUD/HealthComponent
+@onready var shockwave: Sprite2D = $Pivot/Shockwave
+@onready var dark_shockwave: Sprite2D = $Pivot/DarkShockwave
+@onready var explosion_attack_box: AttackHitboxComponent = $Pivot/ExplosionAttackBox
 
 @onready var states = {
 	"idle": $States/Idle,
@@ -13,9 +16,12 @@ class_name Player
 	"jump": $States/Jump,
 	"fall": $States/Fall,
 	"hurt": $States/Hurt,
-	"dead": $States/Dead
+	"dead": $States/Dead,
+	"charge": $States/Charge,
+	"explode": $States/Explode,
 }
 var state: Node
+var state_str: String
 var can_move = true
 var max_move_time = 2.0
 var wants_to_spawn_ghost = false
@@ -26,15 +32,20 @@ var ghost: PlayerGhost
 
 func _ready() -> void:
 	get_node("TurnComponent").turn_started.connect(on_turn_started)
-	$Pivot/Shockwave.hide()
-	$Pivot/DarkShockwave.hide()
+	shockwave.hide()
+	dark_shockwave.hide()
 	change_state("idle")
 
 
 func on_turn_started():
-	current_move_time_left = max_move_time
-	update_movement_bar()
-	wants_to_spawn_ghost = true
+	# Autocast any pending abilities
+	if Abilities.auto_cast_upon_next_turn:
+		Abilities.auto_cast_upon_next_turn.cast()
+	else:
+		# Allow movement if no autocast abilities
+		current_move_time_left = max_move_time
+		update_movement_bar()
+		wants_to_spawn_ghost = true
 
 func spawn_ghost():
 	wants_to_spawn_ghost = false
@@ -50,8 +61,10 @@ func change_state(new_state: String):
 	if state: state.exit(self)
 	
 	var old_state = state
+	var old_state_str = state_str
 	state = states[new_state]
-	state.enter(self, old_state)
+	state_str = new_state
+	state.enter(self, old_state, old_state_str)
 
 
 func _physics_process(delta: float) -> void:
@@ -98,3 +111,7 @@ func update_movement_bar():
 		%MovementProgressBar.hide()
 	else:
 		%MovementProgressBar.show()
+
+func explode():
+	ScreenShake.shake()
+	explosion_attack_box.apply_damage(11)

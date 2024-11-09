@@ -4,7 +4,7 @@ extends CanMoveState
 var time_passed = 0.0
 var prev_state: Node
 
-func enter(owner: CharacterBody2D, previous_state: Node):
+func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: String):
 	owner.animation_player.play("fall")
 	time_passed = 0.0
 	prev_state = previous_state

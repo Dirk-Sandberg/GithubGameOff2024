@@ -10,7 +10,8 @@ extends Node2D
 	"move": $States/MoveTowardsPlayer,
 	"attack": $States/Attack1,
 	"wake": $States/Wake,
-	"idle": $States/Idle
+	"idle": $States/Idle,
+	"dead": $States/Dead
 }
 var state: Node
 var aggroed = false

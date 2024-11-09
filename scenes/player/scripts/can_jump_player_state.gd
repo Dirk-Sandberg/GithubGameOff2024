@@ -4,7 +4,7 @@ class_name CanMoveState
 
 @export var BASE_SPEED = 60.0
 
-func enter(owner: CharacterBody2D, previous_state: Node):
+func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: String):
 	pass
 
 func exit(owner: CharacterBody2D):

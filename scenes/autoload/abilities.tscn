@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://drow316iojxot"]
+
+[ext_resource type="Script" path="res://scenes/autoload/abilities.gd" id="1_f8v0a"]
+[ext_resource type="Script" path="res://scenes/player/abilities/melee_ability.gd" id="2_eob61"]
+[ext_resource type="Script" path="res://scenes/player/abilities/charge_explode_ability.gd" id="3_l13i7"]
+[ext_resource type="Script" path="res://scenes/player/abilities/explode_ability.gd" id="4_7o7s3"]
+[ext_resource type="Script" path="res://scenes/player/abilities/end_turn_ability.gd" id="5_ecsn8"]
+
+[node name="Abilities" type="Node"]
+script = ExtResource("1_f8v0a")
+
+[node name="MeleeAbility" type="Node" parent="."]
+script = ExtResource("2_eob61")
+
+[node name="ChargeExplodeAbility" type="Node" parent="." node_paths=PackedStringArray("explode_ability")]
+script = ExtResource("3_l13i7")
+explode_ability = NodePath("../ExplodeAbility")
+
+[node name="ExplodeAbility" type="Node" parent="."]
+script = ExtResource("4_7o7s3")
+
+[node name="EndTurnAbility" type="Node" parent="."]
+script = ExtResource("5_ecsn8")
