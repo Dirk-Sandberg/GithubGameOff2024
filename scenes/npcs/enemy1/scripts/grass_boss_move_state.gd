@@ -9,12 +9,12 @@ func enter(owner: Node2D, previous_state: Node):
 
 func face_towards(target_pos):
 	var target_is_left = target_pos.x < owner.global_position.x
-	if target_is_left and not owner.sprite_2d.flip_h:# and not flip_h?
+	if target_is_left and not owner.pivot.scale.x == -1:# and not flip_h?
 		owner.animation_player.play("face_left_from_right")
 		await owner.animation_player.animation_finished
-	elif target_is_left and owner.sprite_2d.flip_h:
+	elif target_is_left and owner.pivot.scale.x == -1:
 		pass
-	elif not target_is_left and owner.sprite_2d.flip_h:
+	elif not target_is_left and owner.pivot.scale.x == -1:
 		owner.animation_player.play("face_left_from_right")
 		await owner.animation_player.animation_finished
 	else:
@@ -23,9 +23,29 @@ func face_towards(target_pos):
 	# Flip sprite if necessary
 	await get_tree().process_frame
 	if target_pos.x < owner.global_position.x:
-		owner.sprite_2d.flip_h = true
+		owner.pivot.scale.x = -1
 	elif target_pos.x > owner.global_position.x:
-		owner.sprite_2d.flip_h = false
+		owner.pivot.scale.x = 1
+
+#func face_towards(target_pos):
+	#var target_is_left = target_pos.x < owner.global_position.x
+	#if target_is_left and not owner.sprite_2d.flip_h:# and not flip_h?
+		#owner.animation_player.play("face_left_from_right")
+		#await owner.animation_player.animation_finished
+	#elif target_is_left and owner.sprite_2d.flip_h:
+		#pass
+	#elif not target_is_left and owner.sprite_2d.flip_h:
+		#owner.animation_player.play("face_left_from_right")
+		#await owner.animation_player.animation_finished
+	#else:
+		#pass
+#
+	## Flip sprite if necessary
+	#await get_tree().process_frame
+	#if target_pos.x < owner.global_position.x:
+		#owner.sprite_2d.flip_h = true
+	#elif target_pos.x > owner.global_position.x:
+		#owner.sprite_2d.flip_h = false
 
 
 

@@ -17,9 +17,9 @@ func _ready() -> void:
 func display():
 	highlighted_idx = -1
 	if TurnManager.is_player_turn():
-		%Icon5.show()
+		%EndTurnContainer.show()
 	else:
-		%Icon5.hide()
+		%EndTurnContainer.hide()
 	show()
 
 func go_away():

@@ -1,8 +1,9 @@
 extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var health_component: HealthComponent = $BossHUD/HealthComponent
+@onready var sprite_2d: Sprite2D = $Pivot/Sprite2D
+@onready var pivot: Node2D = $Pivot
 
 @onready var states = {
 	"sleep": $States/Sleep,
@@ -36,6 +37,7 @@ func _physics_process(delta: float) -> void:
 		change_state(new_state)
 
 func shake():
+	apply_damage()
 	ScreenShake.shake()
 
 func aggro():
@@ -46,3 +48,6 @@ func aggro():
 
 func _on_aggro_area_body_entered(body: Node2D) -> void:
 	aggro()
+
+func apply_damage():
+	$Pivot/AttackBoxComponent.apply_damage(1)
