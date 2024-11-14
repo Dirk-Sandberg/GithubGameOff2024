@@ -1,6 +1,5 @@
-[gd_scene load_steps=31 format=3 uid="uid://b8t4lrool1s5g"]
+[gd_scene load_steps=30 format=3 uid="uid://b8t4lrool1s5g"]
 
-[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="1_p5g3f"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/enemy_1.gd" id="1_xdgsv"]
 [ext_resource type="PackedScene" uid="uid://brb8tyt84ox8h" path="res://scenes/npcs/components/enemy_turn_component.tscn" id="2_7www6"]
 [ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="3_opyli"]
@@ -9,9 +8,9 @@
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/base_enemy_state.gd" id="9_3wneh"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_attack1_state.gd" id="10_b7633"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_die_state.gd" id="11_5ns4g"]
-[ext_resource type="Texture2D" uid="uid://dr6qmbg2cwwpl" path="res://assets/ui/boss-decal.png" id="11_qnf0g"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_idle_state.gd" id="11_rt7es"]
 [ext_resource type="Script" path="res://scenes/npcs/enemy1/scripts/grass_boss_waking_state.gd" id="12_4r678"]
+[ext_resource type="PackedScene" uid="uid://dtwv48s65jnut" path="res://scenes/npcs/components/boss_hud.tscn" id="12_oa3do"]
 [ext_resource type="PackedScene" uid="uid://cvf021wq70lxf" path="res://scenes/npcs/components/attack_box_component.tscn" id="12_p2v6b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oyr8y"]
@@ -352,23 +351,11 @@ collision_layer = 0
 position = Vector2(2, -34)
 shape = SubResource("RectangleShape2D_fiqy5")
 
-[node name="BossHUD" type="CanvasLayer" parent="."]
+[node name="BossHUD" parent="." instance=ExtResource("12_oa3do")]
 
-[node name="HealthComponent" parent="BossHUD" instance=ExtResource("1_p5g3f")]
-offset_left = 43.0
-offset_top = 149.0
-offset_right = 337.0
-offset_bottom = 157.0
-
-[node name="Decal" type="Sprite2D" parent="BossHUD"]
-position = Vector2(189, 169)
-texture = ExtResource("11_qnf0g")
-
-[node name="BossTitle" type="Label" parent="BossHUD"]
-offset_left = 147.0
-offset_top = 124.0
-offset_right = 231.0
-offset_bottom = 147.0
-text = "Grass Boss"
+[node name="HealthComponent" parent="BossHUD" index="0" node_paths=PackedStringArray("owning_state_machine")]
+owning_state_machine = NodePath("../..")
 
 [connection signal="body_entered" from="AggroArea" to="." method="_on_aggro_area_body_entered"]
+
+[editable path="BossHUD"]

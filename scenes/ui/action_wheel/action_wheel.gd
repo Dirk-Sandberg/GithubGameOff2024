@@ -32,6 +32,8 @@ func update_label(idx):
 	#%Label.text = descriptions[idx]
 	
 func _unhandled_input(event: InputEvent) -> void:
+	if not visible: return
+
 	if event.is_action_pressed("one"):
 		highlight_skill(0)
 	if event.is_action_pressed("two"):

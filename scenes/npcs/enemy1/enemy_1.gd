@@ -1,7 +1,7 @@
 extends Node2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var health_component: HealthComponent = $BossHUD/HealthComponent
+@onready var health_component: HealthComponent = $BossHUD.health_component
 @onready var sprite_2d: Sprite2D = $Pivot/Sprite2D
 @onready var pivot: Node2D = $Pivot
 
@@ -45,7 +45,6 @@ func aggro():
 	if aggroed: return
 	aggroed = true
 	change_state("wake")
-	
 
 func _on_aggro_area_body_entered(body: Node2D) -> void:
 	aggro()

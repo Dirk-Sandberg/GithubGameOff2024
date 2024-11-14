@@ -12,6 +12,6 @@ func on_turn_finished():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("movement_reset"):
-		player.global_position = global_position + Vector2(-9, 0)
+		player.global_position = global_position + Vector2(-9, 15)
 		player.reset_movement()
 		hide()

@@ -442,13 +442,14 @@ visible = false
 position = Vector2(25, 9)
 texture = ExtResource("18_i24ij")
 
-[node name="HealthComponent" parent="HUD" instance=ExtResource("3_4lawa")]
+[node name="HealthComponent" parent="HUD" node_paths=PackedStringArray("owning_state_machine") instance=ExtResource("3_4lawa")]
 offset_left = 7.0
 offset_top = 5.0
 offset_right = 61.0
 offset_bottom = 13.0
 size_flags_horizontal = 1
 is_player = true
+owning_state_machine = NodePath("../..")
 
 [node name="Label" type="Label" parent="HUD/HealthComponent"]
 layout_mode = 1

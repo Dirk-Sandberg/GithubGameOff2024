@@ -32,10 +32,17 @@ var ghost: PlayerGhost
 
 func _ready() -> void:
 	get_node("TurnComponent").turn_started.connect(on_turn_started)
+	TurnManager.combat_started.connect(on_combat_started)
+	TurnManager.combat_ended.connect(on_combat_ended)
 	shockwave.hide()
 	dark_shockwave.hide()
 	change_state("idle")
 
+func on_combat_started():
+	can_move = false
+
+func on_combat_ended():
+	can_move = true
 
 func on_turn_started():
 	# Autocast any pending abilities
@@ -46,7 +53,7 @@ func on_turn_started():
 		current_move_time_left = max_move_time
 		update_movement_bar()
 		wants_to_spawn_ghost = true
-
+		can_move = true
 func spawn_ghost():
 	wants_to_spawn_ghost = false
 	var ghost_scene = preload("res://scenes/player/player_ghost.tscn")
@@ -54,7 +61,7 @@ func spawn_ghost():
 	if not ghost:
 		ghost = ghost_scene.instantiate()
 		add_sibling(ghost)
-		ghost.global_position = global_position + Vector2(9, 0)
+		ghost.global_position = global_position + Vector2(9, -10)
 	ghost.hide()
 
 func change_state(new_state: String):
@@ -68,7 +75,8 @@ func change_state(new_state: String):
 
 
 func _physics_process(delta: float) -> void:
-	if wants_to_spawn_ghost and is_on_floor(): spawn_ghost()
+	if wants_to_spawn_ghost and is_on_floor(): 
+		spawn_ghost()
 
 	var new_state: String = state.physics_process(self, delta)
 	if new_state:

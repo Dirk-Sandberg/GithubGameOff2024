@@ -9,6 +9,8 @@ signal hit
 
 @onready var hp = max_hp
 @export var is_player = false
+@export var owning_state_machine: Node2D
+
 var damage_label_scene = preload("res://scenes/npcs/components/damage_label/damage_label.tscn")
 var dead = false
 
@@ -19,6 +21,8 @@ func _ready():
 	
 	update_hp_bar()
 
+	assert(owning_state_machine)
+
 func take_damage(damage):
 	if dead: return
 
@@ -27,8 +31,8 @@ func take_damage(damage):
 	owner.add_child(dmg_label)
 
 	hp -= damage
-	if owner.has_node("States/Hurt"):
-		owner.change_state("hurt")
+	if owning_state_machine.has_node("States/Hurt"):
+		owning_state_machine.change_state("hurt")
 	#if animation_player:
 		#animation_player.play("hurt")
 	if hp <= 0:
@@ -43,5 +47,5 @@ func update_hp_bar():
 func die():
 	died.emit()
 	dead = true
-	if owner.has_node("States/Dead"):
-		owner.change_state("dead")
+	if owning_state_machine.has_node("States/Dead"):
+		owning_state_machine.change_state("dead")
