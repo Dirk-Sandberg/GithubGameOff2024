@@ -23,6 +23,7 @@ TransitionManager="*res://scenes/autoload/transition_manager.tscn"
 TurnManager="*res://scenes/autoload/turn_manager.tscn"
 ScreenShake="*res://scenes/autoload/screen_shake.tscn"
 Abilities="*res://scenes/autoload/abilities.tscn"
+CastManager="*res://scenes/autoload/cast_manager.tscn"
 
 [display]
 
@@ -136,6 +137,11 @@ five={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":53,"key_label":0,"unicode":53,"location":0,"echo":false,"script":null)
 ]
 }
+click={
+"deadzone": 0.5,
+"events": [Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"button_mask":1,"position":Vector2(694, 22),"global_position":Vector2(713, 113),"factor":1.0,"button_index":1,"canceled":false,"pressed":true,"double_click":false,"script":null)
+]
+}
 
 [layer_names]
 
@@ -147,4 +153,3 @@ five={
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
-2d/snap/snap_2d_transforms_to_pixel=true

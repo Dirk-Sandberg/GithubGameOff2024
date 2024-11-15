@@ -317,11 +317,10 @@ libraries = {
 speed_scale = 0.4
 
 [node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("3_opyli")]
-position = Vector2(33, -36)
 health_component = NodePath("../BossHUD/HealthComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
-position = Vector2(-35, 0)
+position = Vector2(-1, -34)
 shape = SubResource("CircleShape2D_igwqp")
 
 [node name="States" type="Node" parent="."]

@@ -54,6 +54,7 @@ func on_turn_started():
 		update_movement_bar()
 		wants_to_spawn_ghost = true
 		can_move = true
+
 func spawn_ghost():
 	wants_to_spawn_ghost = false
 	var ghost_scene = preload("res://scenes/player/player_ghost.tscn")
@@ -75,6 +76,9 @@ func change_state(new_state: String):
 
 
 func _physics_process(delta: float) -> void:
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = true
+
 	if wants_to_spawn_ghost and is_on_floor(): 
 		spawn_ghost()
 
