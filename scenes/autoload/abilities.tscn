@@ -1,16 +1,20 @@
-[gd_scene load_steps=12 format=3 uid="uid://drow316iojxot"]
+[gd_scene load_steps=16 format=3 uid="uid://drow316iojxot"]
 
 [ext_resource type="Script" path="res://scenes/autoload/abilities.gd" id="1_f8v0a"]
 [ext_resource type="Script" path="res://scenes/player/abilities/melee_ability.gd" id="2_eob61"]
 [ext_resource type="Script" path="res://scenes/player/abilities/charge_explode_ability.gd" id="3_l13i7"]
 [ext_resource type="Script" path="res://scenes/player/abilities/explode_ability.gd" id="4_7o7s3"]
 [ext_resource type="Script" path="res://scenes/player/abilities/end_turn_ability.gd" id="5_ecsn8"]
-[ext_resource type="Script" path="res://scenes/player/abilities/water_1_ability.gd" id="6_0qol8"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_1.gd" id="6_0qol8"]
 [ext_resource type="PackedScene" uid="uid://vpxkeylndk08" path="res://scenes/spells/water_1.tscn" id="7_nitya"]
-[ext_resource type="Script" path="res://scenes/player/abilities/water_2_ability.gd" id="8_5rcr2"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_2.gd" id="8_5rcr2"]
 [ext_resource type="PackedScene" uid="uid://bo42cdkxvvait" path="res://scenes/spells/water_2.tscn" id="9_4fg6c"]
 [ext_resource type="Script" path="res://scenes/player/abilities/water_ability_3.gd" id="10_rttkc"]
 [ext_resource type="PackedScene" uid="uid://dl5fl6j7qlpmc" path="res://scenes/spells/water_3.tscn" id="11_fnbgh"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_4.gd" id="12_wfwgi"]
+[ext_resource type="PackedScene" uid="uid://d26wjjlqnn3ap" path="res://scenes/spells/water_4.tscn" id="13_njudt"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_5.gd" id="14_hh8am"]
+[ext_resource type="PackedScene" uid="uid://bwp0cdsxyqrnm" path="res://scenes/spells/water_5.tscn" id="15_m6p30"]
 
 [node name="Abilities" type="Node"]
 script = ExtResource("1_f8v0a")
@@ -39,3 +43,11 @@ spell_sprite = ExtResource("9_4fg6c")
 [node name="WaterAbility3" type="Node" parent="."]
 script = ExtResource("10_rttkc")
 spell_sprite = ExtResource("11_fnbgh")
+
+[node name="WaterAbility4" type="Node" parent="."]
+script = ExtResource("12_wfwgi")
+spell_sprite = ExtResource("13_njudt")
+
+[node name="WaterAbility5" type="Node" parent="."]
+script = ExtResource("14_hh8am")
+spell_sprite = ExtResource("15_m6p30")
