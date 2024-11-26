@@ -60,6 +60,7 @@ _data = {
 }
 
 [node name="TransitionManager" type="Node"]
+process_mode = 3
 script = ExtResource("1_vwlj0")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://drow316iojxot"]
+[gd_scene load_steps=22 format=3 uid="uid://drow316iojxot"]
 
 [ext_resource type="Script" path="res://scenes/autoload/abilities.gd" id="1_f8v0a"]
 [ext_resource type="Script" path="res://scenes/player/abilities/melee_ability.gd" id="2_eob61"]
@@ -15,6 +15,12 @@
 [ext_resource type="PackedScene" uid="uid://d26wjjlqnn3ap" path="res://scenes/spells/water_4.tscn" id="13_njudt"]
 [ext_resource type="Script" path="res://scenes/player/abilities/water_ability_5.gd" id="14_hh8am"]
 [ext_resource type="PackedScene" uid="uid://bwp0cdsxyqrnm" path="res://scenes/spells/water_5.tscn" id="15_m6p30"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_6.gd" id="16_3amgw"]
+[ext_resource type="PackedScene" uid="uid://c4e7i1yrletc4" path="res://scenes/spells/water_6.tscn" id="17_w3vfh"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_7.gd" id="18_rq7gp"]
+[ext_resource type="PackedScene" uid="uid://j3lgre2li0jv" path="res://scenes/spells/water_7.tscn" id="19_tqxnb"]
+[ext_resource type="Script" path="res://scenes/player/abilities/water_ability_8.gd" id="20_au71h"]
+[ext_resource type="PackedScene" uid="uid://bwnrkwalyxxiw" path="res://scenes/spells/water_8.tscn" id="21_tx2c6"]
 
 [node name="Abilities" type="Node"]
 script = ExtResource("1_f8v0a")
@@ -51,3 +57,15 @@ spell_sprite = ExtResource("13_njudt")
 [node name="WaterAbility5" type="Node" parent="."]
 script = ExtResource("14_hh8am")
 spell_sprite = ExtResource("15_m6p30")
+
+[node name="WaterAbility6" type="Node" parent="."]
+script = ExtResource("16_3amgw")
+spell_sprite = ExtResource("17_w3vfh")
+
+[node name="WaterAbility7" type="Node" parent="."]
+script = ExtResource("18_rq7gp")
+spell_sprite = ExtResource("19_tqxnb")
+
+[node name="WaterAbility8" type="Node" parent="."]
+script = ExtResource("20_au71h")
+spell_sprite = ExtResource("21_tx2c6")

@@ -10,6 +10,7 @@ func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: Str
 	frames_holding_jump = 0
 	owner.velocity.y = JUMP_VELOCITY
 	owner.animation_player.play("jump")
+	AudioManager.play_jump()
 	pass
 
 func exit(owner: CharacterBody2D):

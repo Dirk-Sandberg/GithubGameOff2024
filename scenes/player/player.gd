@@ -76,8 +76,6 @@ func change_state(new_state: String):
 
 
 func _physics_process(delta: float) -> void:
-	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = true
 
 	if wants_to_spawn_ghost and is_on_floor(): 
 		spawn_ghost()

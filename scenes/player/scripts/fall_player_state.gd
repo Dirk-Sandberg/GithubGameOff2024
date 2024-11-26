@@ -10,6 +10,7 @@ func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: Str
 	prev_state = previous_state
 
 func exit(owner: CharacterBody2D):
+	AudioManager.play_land()
 	pass
 
 func physics_process(owner: CharacterBody2D, delta: float) -> String:

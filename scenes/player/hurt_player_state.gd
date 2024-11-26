@@ -5,6 +5,7 @@ var prev_state_str: String
 
 func enter(owner: CharacterBody2D, previous_state: Node, previous_state_str: String):
 	done_animating = false
+	#if previous_state_str != "idle": # Allow multiple heals/dmgs in quick succession
 	prev_state_str = previous_state_str
 	owner.animation_player.play("hurt")
 	await owner.animation_player.animation_finished
