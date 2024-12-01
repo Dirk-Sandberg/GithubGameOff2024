@@ -1,5 +1,4 @@
 extends Control
-#signal turn_ended
 
 var tween: Tween
 var highlighted_idx = -1
@@ -20,6 +19,21 @@ func display():
 		%EndTurnContainer.show()
 	else:
 		%EndTurnContainer.hide()
+
+	if GV.awaiting_tutorial_ability1:
+		%Icon2.hide()
+		%Icon3.hide()
+		%Icon4.hide()
+	elif GV.awaiting_tutorial_ability2:
+		%Icon2.show()
+		%Icon3.hide()
+		%Icon4.hide()
+	else:
+		%Icon1.show()
+		%Icon2.show()
+		%Icon3.show()
+		%Icon4.show()
+		
 	show()
 
 func go_away():

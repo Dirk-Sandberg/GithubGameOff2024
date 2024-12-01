@@ -19,7 +19,11 @@ var aggroed = false
 func _ready() -> void:
 	change_state("sleep")
 	TurnManager.combat_started.connect(on_combat_begin)
+	health_component.died.connect(go_away)
 	$BossHUD.hide()
+
+func go_away():
+	TurnManager.end_combat()
 
 func on_combat_begin():
 	$BossHUD.show()

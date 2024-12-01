@@ -39,6 +39,8 @@ func do_combat(enemies):
 
 		new_combatant.emit(combatant)
 		await camera.finished_lerping
+
+
 		if combatant == player:
 			show_text("Player Turn")
 			# This should only run if there are more combatants
@@ -49,11 +51,17 @@ func do_combat(enemies):
 	current_combatant = null
 
 	# Remove dead enemies
-	for combatant in combatants_to_remove:
-		enemies.erase(combatant)
+	for _combatant in combatants_to_remove:
+		if _combatant in enemies:
+			enemies.erase(_combatant)
+	if enemies == []:
+		end_combat()
+		return
 
-	#if player not in combatants:
-		#end_combat()
+	#for combatant in combatants_to_remove:
+		#if combatant in enemies:
+			#enemies.erase(combatant)
+
 	if enemies == []:
 		end_combat()
 	else: do_combat(enemies)

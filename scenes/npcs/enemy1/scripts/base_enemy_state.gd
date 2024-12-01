@@ -1,4 +1,4 @@
-extends Node
+extends EnemyState
 class_name BaseEnemyState
 
 func enter(owner: Node2D, previous_state: Node):

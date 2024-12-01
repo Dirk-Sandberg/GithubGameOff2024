@@ -7,6 +7,7 @@ const PLAYER_LAYER = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	assert(health_component)
 	if is_player:
 		set_collision_layer_value(PLAYER_LAYER, true)
 	else:

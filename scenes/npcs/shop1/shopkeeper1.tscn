@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpe7l85xm2ehf"]
+[gd_scene load_steps=11 format=3 uid="uid://dpe7l85xm2ehf"]
 
 [ext_resource type="Texture2D" uid="uid://qpyy7b2gn3y3" path="res://scenes/npcs/shop1/Mushroom Merchant.png" id="1_68php"]
 [ext_resource type="Script" path="res://scenes/npcs/shop1/shopkeeper_1.gd" id="1_ugh5d"]
 [ext_resource type="PackedScene" uid="uid://cst0j78h1olvf" path="res://scenes/ui/interactable_hint/interactable_area.tscn" id="2_cutgj"]
 [ext_resource type="PackedScene" uid="uid://1iieu2i6sv46" path="res://scenes/npcs/shop1/flickering_light.tscn" id="3_0fsvy"]
+[ext_resource type="PackedScene" uid="uid://csji6cdfpkei3" path="res://scenes/npcs/components/hitbox_component.tscn" id="5_8uyol"]
+[ext_resource type="PackedScene" uid="uid://kuunpx6qvvrb" path="res://scenes/npcs/components/health_component.tscn" id="6_poq0n"]
 
 [sub_resource type="Animation" id="Animation_jsvb1"]
 length = 0.001
@@ -43,6 +45,9 @@ _data = {
 "idle": SubResource("Animation_1di6g")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_buu7h"]
+radius = 19.0263
+
 [node name="Shopkeeper1" type="Node2D"]
 script = ExtResource("1_ugh5d")
 
@@ -61,3 +66,19 @@ speed_scale = 0.3
 interact_function_owner = NodePath("..")
 
 [node name="FlickeringLight" parent="." instance=ExtResource("3_0fsvy")]
+
+[node name="HitboxComponent" parent="." node_paths=PackedStringArray("health_component") instance=ExtResource("5_8uyol")]
+position = Vector2(-6, 27)
+health_component = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxComponent"]
+position = Vector2(2, -17)
+shape = SubResource("CircleShape2D_buu7h")
+
+[node name="HealthComponent" parent="." node_paths=PackedStringArray("owning_state_machine") instance=ExtResource("6_poq0n")]
+visible = false
+offset_left = -38.0
+offset_top = -29.0
+offset_right = 32.0
+offset_bottom = -21.0
+owning_state_machine = NodePath("..")

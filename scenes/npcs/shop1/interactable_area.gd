@@ -23,6 +23,7 @@ func _on_body_entered(body: Node2D) -> void:
 		print(hint_text)
 		print(hint_scene.text)
 		add_child(hint_scene)
+		hint_scene.position += Vector2.UP*35
 	interactable = true
 
 
