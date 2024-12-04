@@ -17,3 +17,8 @@ func apply_damage(damage: float):
 	for area in get_overlapping_areas():
 		if area.has_method("get_hit"):
 			area.get_hit(damage)
+
+func in_range_of_enemy():
+	if get_overlapping_areas():
+		return true
+	return false

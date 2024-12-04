@@ -12,7 +12,7 @@ var in_combat = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	%Label.hide()
-	%Decor.hide()
+	%LabelDecor.hide()
 
 func is_player_turn():
 	var player = get_tree().get_first_node_in_group("player")
@@ -76,8 +76,8 @@ func end_combat():
 
 func show_text(t):
 	%Label.show()
-	%Decor.show()
+	%LabelDecor.show()
 	%Label.text = t
 	await get_tree().create_timer(2.0).timeout
 	%Label.hide()
-	%Decor.hide()
+	%LabelDecor.hide()

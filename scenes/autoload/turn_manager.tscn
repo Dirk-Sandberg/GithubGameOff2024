@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhixulblcj2n3"]
+[gd_scene load_steps=4 format=3 uid="uid://dhixulblcj2n3"]
 
 [ext_resource type="Script" path="res://scenes/autoload/turn_manager.gd" id="1_xygmv"]
 [ext_resource type="Texture2D" uid="uid://bneb667kyctka" path="res://assets/ui/bottom-border1-texture.png" id="2_fr746"]
+[ext_resource type="Texture2D" uid="uid://dth06vfn2nmaw" path="res://assets/checkmark-ui-icon.png" id="3_islgx"]
 
 [node name="TurnManager" type="Node"]
 script = ExtResource("1_xygmv")
@@ -34,7 +35,44 @@ text = "test"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Decor" type="Sprite2D" parent="CanvasLayer/Control"]
+[node name="LabelDecor" type="Sprite2D" parent="CanvasLayer/Control"]
 unique_name_in_owner = true
 position = Vector2(181, 103)
 texture = ExtResource("2_fr746")
+
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -60.0
+offset_right = 60.0
+offset_bottom = 48.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+
+[node name="TurnsIconContainer" type="VBoxContainer" parent="CanvasLayer/PanelContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="IconsContainer" type="HBoxContainer" parent="CanvasLayer/PanelContainer/TurnsIconContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Icon1" type="TextureRect" parent="CanvasLayer/PanelContainer/TurnsIconContainer/IconsContainer"]
+layout_mode = 2
+
+[node name="Icon2" type="TextureRect" parent="CanvasLayer/PanelContainer/TurnsIconContainer/IconsContainer"]
+layout_mode = 2
+texture = ExtResource("3_islgx")
+
+[node name="Icon3" type="TextureRect" parent="CanvasLayer/PanelContainer/TurnsIconContainer/IconsContainer"]
+layout_mode = 2
+texture = ExtResource("3_islgx")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CanvasLayer/PanelContainer/TurnsIconContainer/IconsContainer"]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="CanvasLayer/PanelContainer/TurnsIconContainer/IconsContainer/SubViewportContainer"]
+gui_disable_input = true
+size = Vector2i(16, 16)
